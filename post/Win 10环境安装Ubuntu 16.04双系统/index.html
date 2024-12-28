@@ -1,0 +1,357 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Win 10环境安装Ubuntu 16.04双系统 | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Win 10环境安装Ubuntu 16.04双系统
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-04-01 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/VnTUJV7dTK/" class="post-tags">
+                            # Linux
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/-Or23axjcx/" class="post-tags">
+                            # OS
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在学习的过程中，难免会遇到需要安装双系统的情况，因为之前安装的双系统版本过于新，导致很多软件不能得到很好的支持，于是卸载了原有版本的双系统之后，重新安装了一遍双系统，并以此博文记录，避免之后再次踩坑。</p>
+<!--more-->
+<p>此文适用于MBR（传统） Windows 10 版本下安装Ubuntu 16.04 双系统，其他情况下仅供参考。</p>
+<h2 id="准备">准备</h2>
+<h3 id="准备工具">准备工具</h3>
+<p>➢U盘一个（推荐8GB以上，提前备份U盘，后面操作要格式化U盘）</p>
+<p>➢Ubuntu 16.04 LTS 镜像<br>
+<a href="http://www.ubuntu.com/download/desktop">镜像下载地址</a><br>
+<a href="http://cn.ubuntu.com/download/">Ubuntu中国下载地址</a></p>
+<p>➢启动U盘制作软件<br>
+<a href="http://rufus.ie/">rufus</a><br>
+<a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows">Ubuntu官网提供的USB启动盘制作教程</a></p>
+<p>➢ 系统引导软件<a href="https://neosmart.net/EasyBCD/">EasyBCD</a></p>
+<h3 id="分区">分区</h3>
+<p>分出来一个磁盘，用于安装Ubuntu，我的电脑配置128GB SSD和1TB HDD，我在SSD中压缩出了512MB空间，在HDD中压缩出了250GB空间，具体可根据条件自行调节。具体分区步骤，请参照<a href="http://jingyan.baidu.com/article/425e69e6bbd0c7be14fc164a.html">百度经验</a></p>
+<h3 id="制作启动u盘">制作启动U盘</h3>
+<ol>
+<li>运行下载好的rufus</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_02.png" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>选择Ubuntu 镜像文件，找到电脑中Ubuntu 16.04 的镜像位置，选择即可</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_03.png" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>点击开始，弹窗默认一路确定即可</li>
+</ol>
+<figure data-type="image" tabindex="3"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_04.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_05.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_06.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_07.png" alt="" loading="lazy"></figure>
+<ol start="4">
+<li>将镜像写入U盘了</li>
+</ol>
+<figure data-type="image" tabindex="7"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_08.png" alt="" loading="lazy"></figure>
+<ol start="5">
+<li>成功，点击<strong>关闭</strong></li>
+</ol>
+<figure data-type="image" tabindex="8"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_09.png" alt="" loading="lazy"></figure>
+<h2 id="安装">安装</h2>
+<ol>
+<li>从U盘启动<br>
+将制作好的USB启动盘插在电脑上，选择启动方式为USB启动。(如果你的电脑有两个USB启动选项可供选择，可能一个带有“UEFI”,另一个没有“UEFI”，请选择没有“UEFI”的，选带有“UEFI”的可能会出现问题)</li>
+</ol>
+<p>**注意：**选择USB启动可能需要到BIOS界面进行相关操作，请根据不同电脑自行查找资料</p>
+<ol start="2">
+<li>欢迎界面<br>
+选择了U盘启动后，等待一小会儿，会出现如下“欢迎”界面（通过左侧的语言栏选择中文），选择中文后，点击“安装Ubuntu”</li>
+</ol>
+<figure data-type="image" tabindex="9"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_10.png" alt="" loading="lazy"></figure>
+<ol start="3">
+<li>准备安装<br>
+接下来会进入“准备安装Ubuntu”界面：根据需求勾选选项（如需下载内容则需要联网）</li>
+</ol>
+<figure data-type="image" tabindex="10"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_11.png" alt="" loading="lazy"></figure>
+<ol start="4">
+<li>选择安装类型<br>
+上步之后进入“安装类型”界面，选择“其他选项”</li>
+</ol>
+<figure data-type="image" tabindex="11"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_12.png" alt="" loading="lazy"></figure>
+<ol start="5">
+<li>安装位置的选择及磁盘分区<br>
+选择安装位置和磁盘分区是十分重要的环节！！！！</li>
+</ol>
+<p>选中“空闲”区域，核对一下大小对不对，点击左下角的加号**+<strong>创建分区，若创建错了就点减号</strong>-**删除。</p>
+<p>分区推荐分配方案：</p>
+<ul>
+<li>/boot  200 MB ； 引导系统存放的空间，实际需求大约 100 ~ 200MB，如果有多个内核/启动镜像同时存在，建议分配 200 或者 300 MB，我的选择是512MB。</li>
+</ul>
+<figure data-type="image" tabindex="12"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_13.png" alt="" loading="lazy"></figure>
+<ul>
+<li>swap  [不定] ；相当于虚拟内存，在拥有不足 512 MB 内存的机器上，通常为 swap 分区分配2倍内存大小的空间。如果有更大的内存（大于 1024 MB），可以分配较少的空间甚至不需要swap 分区，我选择的空间大小与电脑物理内存差不多。</li>
+</ul>
+<figure data-type="image" tabindex="13"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_14.png" alt="" loading="lazy"></figure>
+<ul>
+<li>/  15-20 GB ； 存放安装软件的存储空间，15-20 GB 对于大多数用户来说是一个比较合适的取值，我的选择是20GB。</li>
+</ul>
+<figure data-type="image" tabindex="14"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_15.png" alt="" loading="lazy"></figure>
+<ul>
+<li>/home  [不定] ； 通常用于存放用户数据，下载的文件和媒体文件。在桌面系统中，/home 通常是最大的文件系统，我的选择是分配所剩下的所有空间。</li>
+</ul>
+<figure data-type="image" tabindex="15"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_16.png" alt="" loading="lazy"></figure>
+<p>**核心步骤：&quot;安装启动引导器的设备&quot; 选择/boot 对应的分区。**此处不要使用默认项，默认项将从Ubuntu的grub来启动你的Windows的，如果Ubuntu系统瘫痪了，Windows将难以启动。</p>
+<figure data-type="image" tabindex="16"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_17.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="17"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_18.png" alt="" loading="lazy"></figure>
+<p>我遇到了格式化Ubuntu所在磁盘后，开机提示错误，连Windows都进不去。错误代码如下：</p>
+<pre><code>error: no such partition
+Entering rescue mode...
+grub rescue&gt;
+</code></pre>
+<p>解决方法如下：<br>
+i. 插入启动盘（U盘或者时光盘），开机从USB启动盘启动<br>
+ii. 选择修复计算机——疑难解答——命令提示符<br>
+iii. 输入命令：<code>bootsect/nt60 C：</code> 看到成功提示后，再输入命令：<code>bootrec/fixmbr</code> 成功后重启即可正常进入系统.</p>
+<ol start="6">
+<li>选择地域<br>
+默认上海，直接&quot;继续&quot;就行，安装完之后可以设置精确的位置</li>
+</ol>
+<figure data-type="image" tabindex="18"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_19.png" alt="" loading="lazy"></figure>
+<ol start="7">
+<li>选择键盘<br>
+根据个人情况选择</li>
+</ol>
+<figure data-type="image" tabindex="19"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_20.png" alt="" loading="lazy"></figure>
+<ol start="8">
+<li>设置用户</li>
+</ol>
+<figure data-type="image" tabindex="20"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_21.png" alt="" loading="lazy"></figure>
+<p>设置完之后，选择&quot;继续&quot;</p>
+<ol start="9">
+<li>安装，静候</li>
+</ol>
+<figure data-type="image" tabindex="21"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_22.png" alt="" loading="lazy"></figure>
+<ol start="10">
+<li>安装成功，重启</li>
+</ol>
+<figure data-type="image" tabindex="22"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_23.png" alt="" loading="lazy"></figure>
+<p>重启之后，将没有Ubuntu的启动项，直接进入Windows系统，设置启动项。</p>
+<ol start="11">
+<li>设置启动项</li>
+</ol>
+<p>进入Windows 后，安装 EasyBCD ，之后运行</p>
+<figure data-type="image" tabindex="23"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_24.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_25.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_26.png" alt="" loading="lazy"></figure>
+<p>重启，将会出现Ubuntu启动项，点击刚添加的启动项，进入Ubuntu grub界面</p>
+<p>如需屏蔽grub等待界面，可通过如下操作设置<br>
+i. 编辑grub文件<code>sudo vim /etc/default/grub</code><br>
+ii. 注释掉<code>GRUB_HIDDEN_TIMEOUT=0</code><br>
+iii. 修改<code>GRUB_TIMEOUT=0.01</code><br>
+iv. <code>sudo update-grub</code><br>
+v.重启电脑 <code>sudo shutdown -r now</code></p>
+<p>如在将来操作中遇到开机进入Ubuntu系统黑屏的情况，只需要在Windows系统下使用EasyBCD删除Ubuntu启动项条目，再重复上述添加启动项的操作即可恢复进入。</p>
+<ol start="12">
+<li>输入用户密码</li>
+</ol>
+<figure data-type="image" tabindex="26"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_27.png" alt="" loading="lazy"></figure>
+<ol start="13">
+<li>enjoy！</li>
+</ol>
+<figure data-type="image" tabindex="27"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_28.png" alt="" loading="lazy"></figure>
+<h2 id="卸载">卸载</h2>
+<p>如果有需要卸载双系统的需求，可通过以下操作实现：<br>
+i. 下载软件：<a href="http://www.diskgenius.cn/download.php">diskgenius</a><br>
+ii. 删除Ubuntu系统使用的几个分区（包括EFI分区），注意不要删除Windows的EFI分区<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E33/E33_29.png" alt="" loading="lazy"><br>
+若不确定Ubuntu相关分区，可通过【Windows+X】 选择磁盘管理，通过分区大小进行对比判断。<br>
+iii. 删除磁盘分区后，使用EasyBCD删除Ubuntu启动项条目即可。</p>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://blog.csdn.net/flyyufenfei/article/details/79187656">Windows + Ubuntu 16.04 双系统安装详细教程</a><br>
+<a href="https://blog.csdn.net/weixin_38233274/article/details/80777805">（MBR模式）Win10下安装Ubuntu18.04双系统</a><br>
+<a href="https://blog.csdn.net/jdigiteer/article/details/53558422">电脑开机出现error: no such partition...的解决办法</a><br>
+<a href="https://www.cnblogs.com/greatfish/p/8041901.html">解决ubuntu开机进入grub界面的问题</a><br>
+<a href="https://blog.csdn.net/guikunchen/article/details/88077330">在win10+Ubuntu双系统下，完美卸载Ubuntu</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/二十二岁/" class="post-title gt-a-link">
+                    二十二岁
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

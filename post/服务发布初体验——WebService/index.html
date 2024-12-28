@@ -1,0 +1,333 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>服务发布初体验——WebService | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    服务发布初体验——WebService
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2018-08-14 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/JmFhLbVkO1/" class="post-tags">
+                            # Web 开发
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Web Service 技术，能使得运行在不同机器上的不同应用无须借助附加的、专门的第三方软件或硬件，就可相互交换数据或集成。依据Web Service规范实施的应用之间，无论它们所使用的语言、平台或内部协议是什么，都可以相互交换数据。</p>
+<!--more-->
+<h2 id="调用归属地查询服务">调用归属地查询服务</h2>
+<ol>
+<li>利用命令行执行<code>wsimport</code>生成代码。<br>
+<code>wsimport -s . http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?wsdl</code></li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E26/E26_02.png" alt="" loading="lazy"></figure>
+<p>如图所示，代码生成在D:\Temp\Code。会生成class 和java 文件。删除class 文件。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E26/E26_03.png" alt="" loading="lazy"></p>
+<p>2 .开始编写查询手机号归属地客户端<br>
+eclipse创建工程，将生成的代码copy到你自己想要的包下。<strong>修改java 文件对应package包</strong><br>
+然后编写第一个WebService客户端接口</p>
+<pre><code>package com.webservice.client;
+
+import com.webservice.server.MobileCodeWS;
+import com.webservice.server.MobileCodeWSSoap;
+
+public class PhoneAddressClient {
+	public static void main(String[] args) {
+	System.out.println(getPhoneAddress(&quot;18888888888&quot;));
+ 	}
+
+	public static String getPhoneAddress(String phone){
+	//1.实例化生成的服务类
+ 	MobileCodeWS ws = new MobileCodeWS();
+ 	//2.调用服务类的方法获取接口实例
+ 	MobileCodeWSSoap soap = ws.getMobileCodeWSSoap();
+ 	//3.通过接口直接获取数据
+ 	return soap.getMobileCodeInfo(phone,&quot;&quot;);
+ 	}
+}
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E26/E26_04.png" alt="" loading="lazy"></figure>
+<h2 id="创建自己的web-service-服务">创建自己的Web Service 服务</h2>
+<h3 id="服务端">服务端</h3>
+<ol>
+<li>编写服务接口</li>
+</ol>
+<pre><code>package com.webservice.server;
+
+public interface FisrtWebService {
+	String getAddressByPhoneNo(String phoneNo);
+}
+</code></pre>
+<ol start="2">
+<li>编写接口实现类</li>
+</ol>
+<pre><code>package com.webservice.server.impl;
+
+import javax.jws.WebService;
+
+import com.webservice.server.FisrtWebService;
+
+@WebService//加上这个注解，表示此实现类就是WebService服务
+public class FisrtWebServiceImpl implements FisrtWebService {
+	public String getAddressByPhoneNo(String phoneNo) {
+ 	return phoneNo + &quot;: 归属地是上海&quot;;
+	}
+}
+</code></pre>
+<ol start="3">
+<li>发布服务，并运行</li>
+</ol>
+<pre><code>package com.webservice.server;
+
+import javax.xml.ws.Endpoint;
+import com.webservice.server.impl.FisrtWebServiceImpl;
+
+public class PublishServerTest {
+	public static void main(String[] args) {
+	//参数1：服务被访问的url:ip+端口号+服务名 参数2：实现类
+	Endpoint.publish(&quot;http://localhost:9999/getAddress&quot;, new FisrtWebServiceImpl());
+	System.out.println(&quot;服务发布成功&quot;);
+	}
+}
+</code></pre>
+<h3 id="客户端">客户端</h3>
+<ol>
+<li>验证服务是否发布成功<br>
+访问发布服务的ip+端口+服务名+?wsdl 是否能显示<br>
+例： <code>http://localhost:9999/getAddress?wsdl</code></li>
+</ol>
+<figure data-type="image" tabindex="3"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E26/E26_05.png" alt="" loading="lazy"></figure>
+<ol>
+<li>
+<p>生成代码<br>
+照第一个例子那样通过命令生成代码，这里可以利用命令生成代码<strong>自定义包名</strong>并<strong>将class 文件和java 文件分开</strong> （实现在文件夹下建好classes 文件夹）<br>
+<code>wsimport -s . -d ./classes -p com.webservice.client http://localhost:9999/getAddress?wsdl</code><br>
+<strong>特别注意，客户端的FisrtWebServiceImpl是接口，不是服务端编写的实现类</strong></p>
+</li>
+<li>
+<p>编写客户端代码</p>
+</li>
+</ol>
+<pre><code>package com.webservice.client;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+
+public class FisrtClinet {
+	public static void main(String[] args) throws MalformedURLException {
+	//也可以按照入门案例PhoneAddressClient那样调用，这种方法更具灵活性
+	//FisrtWebServiceImplService是自动生成的接口，不是服务端的实现类
+	Service service = Service.create(new URL(&quot;http://localhost:9999/getAddress?wsdl&quot;), new QName(&quot;http://impl.server.webservice.acn.com/&quot;,&quot;FisrtWebServiceImplService&quot;));
+	FisrtWebServiceImpl impl = service.getPort(FisrtWebServiceImpl.class);
+	System.out.println(impl.getAddressByPhoneNo(&quot;18888888888&quot;));
+	}
+}
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E26/E26_06.png" alt="" loading="lazy"></figure>
+<h3 id="便捷测试">便捷测试</h3>
+<p>为了测试自己的Web Service 是否能够使用，其实可以不必重复上述复杂的生成客户端的过程，<br>
+这里推荐使用<a href="https://www.soapui.org/">SOAP UI</a> 进行Web Service 的测试。</p>
+<h2 id="意义">意义</h2>
+<p>简单的说，Web Service就是一种<strong>跨编程语言</strong>和<strong>跨操作系统平台</strong>的<strong>远程调用</strong>技术。所谓跨编程语言和跨操作平台，就是说服务端程序采用java编写，客户端程序则可以采用其他编程语言编写，反之亦然。跨操作系统平台则是指服务端程序和客户端程序可以在不同的操作系统上运行。 远程调用，就是一台计算机的应用可以调用其他计算机上的应用。例如：支付宝，支付宝并没有银行卡等数据，它只是去调用银行提供的接口来获得数据。还有天气预报等，也是气象局把自己的系统服务以webservice服务的形式暴露出来，让第三方网站和程序可以调用这些服务功能。<br>
+Web Service 将服务封装起来，暴露给用户的只有方法、入参和出参类型等基本信息，大大减少了服务器端和客户端之间的耦合度，这在企业开发服务的过程中意义重大。</p>
+<h2 id="深入学习">深入学习</h2>
+<h3 id="wsdl">WSDL</h3>
+<p>WSDL（网络服务描述语言，Web Services Description Language）是一门基于 XML 的语言，用于描述 Web Services 以及如何对它们进行访问。<br>
+Web Service 服务器端首先要通过一个WSDL 文件来说明自己有什么服务可以对外调用。简单的说，WSDL就像是一个说明书，用于描述Web Service 及其方法、参数和返回值。 WSDL文件保存在Web 服务器上，通过一个url地址就可以访问到它。客户端要调用一个WebService 服务之前，要知道该服务的WSDL 文件的地址。Web Service 服务提供商可以通过两种方式来暴露它的WSDL 文件地址：1.注册到UDDI 服务器，以便被人查找；2.直接告诉给客户端调用者。<br>
+WSDL 是随服务发布成功，自动生成，无需编写。</p>
+<h3 id="soap-http-xml">SOAP = HTTP + XML</h3>
+<p>SOAP 是一种简单的基于 XML 的协议，它使应用程序通过 HTTP 来交换信息。<br>
+WebService采用Http协议来在客户端和服务端之间传输数据。WebService使用XML来封装数据，XML主要的优点在于它是跨平台的。<br>
+WebService通过HTTP协议发送请求和接收结果时，发送的请求内容和结果内容都采用XML格式封装，并增加了一些特定的HTTP消息头，以说明HTTP消息的内容格式，这些特定的HTTP消息头和XML内容格式就是SOAP协议规定的。</p>
+<h3 id="推荐">推荐</h3>
+<p>关于自学，可以到<a href="http://www.w3school.com.cn/ws.asp">W3school</a> 了解各多！</p>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://blog.csdn.net/c99463904/article/details/76018436">WebService技术详解</a><br>
+<a href="https://blog.csdn.net/qq_35712358/article/details/71244342">WebService深入浅出</a><br>
+<a href="http://www.w3school.com.cn/ws.asp">W3school</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/所见即所得 Latex/" class="post-title gt-a-link">
+                    所见即所得 Latex
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

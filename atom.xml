@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://azha.fun</id>
+    <title>Azha&apos;s Blog</title>
+    <updated>2024-12-28T16:33:04.127Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://azha.fun"/>
+    <link rel="self" href="https://azha.fun/atom.xml"/>
+    <subtitle>平平无奇</subtitle>
+    <logo>https://azha.fun/images/avatar.png</logo>
+    <icon>https://azha.fun/favicon.ico</icon>
+    <rights>All rights reserved 2024, Azha&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Autonomous Driving Decision Making and Controlling Based on Federated Deep Reinforcement Learning]]></title>
+        <id>https://azha.fun/post/autonomous-driving-decision-making-and-controlling-based-on-federated-deep-reinforcement-learning/</id>
+        <link href="https://azha.fun/post/autonomous-driving-decision-making-and-controlling-based-on-federated-deep-reinforcement-learning/">
+        </link>
+        <updated>2024-12-28T13:37:14.000Z</updated>
+        <summary type="html"><![CDATA[<p>Deep reinforcement learning shows good performance in autonomous driving but has issues with limited data. In privacy-sensitive cases, data exchange is restricted. This paper proposes a federated framework, discusses its learning strategy and policy, and explores multi-scenario adaptation. TORCS platform experiments confirm its adaptability and better driving performance in lane keeping with data privacy ensured.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Deep reinforcement learning shows good performance in autonomous driving but has issues with limited data. In privacy-sensitive cases, data exchange is restricted. This paper proposes a federated framework, discusses its learning strategy and policy, and explores multi-scenario adaptation. TORCS platform experiments confirm its adaptability and better driving performance in lane keeping with data privacy ensured.</p>
+<!-- more -->
+<p>这是拖了很久的一篇论文...<br>
+最开始是想在毕业前投在期刊上的，但最终由于达不到期待值迟迟没有投出..<br>
+后来因为毕业之后edu邮箱被回收，想在arxiv上投稿的想法也破灭了..<br>
+Latex转markdown的效果也十分得糟糕，在博客上很难体现出论文的格式..<br>
+最终采取了折衷方案的折衷方案——索性直接把代码和论文全都一股脑放到github上！</p>
+<p>感兴趣的朋友可以点击相应链接跳转🌟<br>
+<a href="https://github.com/azhaYOLO/AutonomousDrivingBasedOnFDRL">Code</a><br>
+<a href="https://github.com/azhaYOLO/AutonomousDrivingBasedOnFDRL/blob/master/Autonomous%20Driving%20Decision%20Making%20and%20Controlling%20Based%20on%20Federated%20Deep%20Reinforcement%20Learning.pdf">Paper</a></p>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E45/E45_01.png" alt="Framework for autonomous driving decision making and controlling based on horizontal federated deep reinforcement learning" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[内网环境下搭建私服Nexus仓库]]></title>
+        <id>https://azha.fun/post/内网环境下搭建私服Nexus仓库/</id>
+        <link href="https://azha.fun/post/内网环境下搭建私服Nexus仓库/">
+        </link>
+        <updated>2023-02-17T06:47:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>最近在公司开发时，重新开始捡起五年左右没有用过的JAVA，从零开始学习Spring和Springboot，由于内部环境无法访问外网，很多依赖无法从外网获取，于是开始灰头土脸地开始折腾起Maven、Nexus、IDEA这三个玩意儿地连通。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>最近在公司开发时，重新开始捡起五年左右没有用过的JAVA，从零开始学习Spring和Springboot，由于内部环境无法访问外网，很多依赖无法从外网获取，于是开始灰头土脸地开始折腾起Maven、Nexus、IDEA这三个玩意儿地连通。</p>
+<!-- more -->
+<h2 id="maven是什么">Maven是什么</h2>
+<p>Maven就是是专门为Java项目打造的管理和构建工具，它的主要功能有：</p>
+<ul>
+<li>提供了一套标准化的项目结构；</li>
+<li>提供了一套标准化的构建流程（编译，测试，打包，发布……）；</li>
+<li>提供了一套依赖管理机制。</li>
+</ul>
+<p>其中，在项目中需要引用依赖时，Maven请求构件的流程图如下<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_01.png" alt="Maven请求构件流程图" loading="lazy"><br>
+其中远程仓库和镜像仓库地址皆可为我们的私服地址，目前主流的私服搭建工具为Nexus，例如阿里云的Maven旧版仓库就是搭建在Nexus上的。</p>
+<h2 id="nexus3仓库的搭建">Nexus3仓库的搭建</h2>
+<h3 id="nexus是什么">Nexus是什么</h3>
+<p>Nexus 的全称是 Nexus Repository Manager（Nexus 仓库管理器），是 Sonatype 公司的一个产品。Nexus 是一个强大的仓库管理器，极大地简化了内部仓库的维护和外部仓库的访问。Nexus常被用来搭建 Maven 私服，所以也有人将 Nexus 称为“Maven仓库管理器”。除此之外，Nexus还可创建npm、pypi等的仓库。</p>
+<h3 id="nexus3下载">Nexus3下载</h3>
+<p>进入<a href="https://www.sonatype.com/products/repository-oss-download">Nexus官网下载页面</a>。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_02.png" alt="" loading="lazy"></p>
+<p>填好一些信息后，选择所需要的版本，因为我的开发环境是Windows，所以下面以Windows作为示例。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_03.png" alt="" loading="lazy"></p>
+<h3 id="nexus3的安装与配置">Nexus3的安装与配置</h3>
+<p>官网上下载下来的Nexus3是个zip压缩包，解压到合适的路径下，解压好后包含两个文件夹，分别为nexus-3.xx.xx-xx和sonatype-work，我的版本为nexus-3.47.1-01，进入该文件夹下的etc目录，用文本处理软件打开nexus-default.properties<br>
+修改application-port自定义私服仓库端口号，修改application-host自定义私服仓库IP，默认为localhost和8081，例如，可以设置端口为9999（ps：chrome等浏览器会限制6666等的部分端口，将其视为不安全的端口，如果遇到此类问题可以查查是否是因为端口受到限制而无法打开。）<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_04.png" alt="" loading="lazy"></p>
+<p>保存配置文件后，返回nexus-3.47.1-01目录，进入bin目录，在命令提示符中打开该路径，输入<code>nexus.exe /install</code>安装服务，默认服务名是nexus，安装后的服务可以在开机后自动启动。接着输入<code>nexus.exe /start</code>启动服务，稍等片刻后输入http://localhost:9999/ 即可进入Nexus3仓库。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_05.png" alt="" loading="lazy"></p>
+<p>首次进入Nexus仓库会提示输入用户名和密码，与Nexus2不同，Nexus3默认的用户名为admin，但是密码不再默认为admin123，需要进入sonatype-work文件夹，该文件夹下有个admin.password文件，用文本处理软件打开复制即可，后续会提示输入新密码，是否允许匿名登录等，根据需求进行配置即可。</p>
+<h3 id="nexus仓库分类">Nexus仓库分类</h3>
+<p>Nexus仓库分为以下 3 个类型：<br>
+代理仓库（proxy）：用来代理远程公共仓库，如 Maven 中央仓库、JBoss 远程仓库。<br>
+宿主仓库（hosted）：又称 Nexus 本地仓库，该仓库通常用来部署本地项目所产生的构件。<br>
+仓库组（group）：用来聚合代理仓库和宿主仓库，为这些仓库提供统一的服务地址，以便 Maven 可以更加方便地获得这些仓库中的构件。<br>
+为了更加直观的理解仓库组、代理仓库和宿主仓库的概念，我们通过下图展示它们的用途和区别。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_06.png" alt="Nexus 仓库分类" loading="lazy"></p>
+<p>由上图可知：<br>
+Maven 可以直接从宿主仓库中下载构件。<br>
+Maven 也可以从代理仓库中下载构件，代理仓库会从远程仓库下载并缓存构件。<br>
+Maven 还可以从仓库组中下载构件，仓库组会从其包含的宿主仓库和代理仓库中获取构件。</p>
+<h3 id="创建宿主仓库">创建宿主仓库</h3>
+<p>依次点击页面上的齿轮，Repositories，Create repository，maven2(hosted)来创建一个宿主仓库。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_07.png" alt="" loading="lazy"><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_08.png" alt="" loading="lazy"></p>
+<p>例如，我打算创建一个用来存放中央仓库中没有的第三方jar包仓库，可以给它起名3rd-party，Version policy默认为Release，此处强烈推荐使用Mixed，否则若之后想要上传SNAPSHOT版本的jar包会很麻烦。Deployment policy默认为Disable redepoly，此处推荐使用Allow redeploy。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_09.png" alt="" loading="lazy"></p>
+<p>点击页面最下方的Create repository按钮即可完成仓库的创建。</p>
+<h3 id="配置代理仓库">配置代理仓库</h3>
+<p>和上一步相似，依次点击页面上的齿轮，Repositories，maven-central来进行代理仓库的配置。<br>
+Remote storage可以修改为阿里云maven组仓库的地址<code>https://maven.aliyun.com/repository/public</code>，来提升构件下载的速率，点击页面最下方的Save按钮即可完成代理仓库的配置修改。需要注意的是，Nexus默认存在的代理仓库的版本策略是Release的，如果需要Mixed策略，则需要重新创建一个代理仓库。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_10.png" alt="" loading="lazy"></p>
+<h3 id="批量上传构件">批量上传构件</h3>
+<p>和Nexus2可以直接拖动整个仓库到Nexus文件夹下不同，Nexus3仅提供了手动上传的方法，该方法单次只能上传一个构件，效率十分低下，而且在输入构件信息的过程中，很容易出错。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_11.png" alt="" loading="lazy"></p>
+<p>这里推荐使用批量上传的方法：<br>
+<strong>前提：windows执行shell脚本，务必安装git 客户端工具。（因为需要执行sh文件）</strong></p>
+<ol>
+<li>在Maven仓库根目录下创建 “mavenimport.sh” 脚本<br>
+脚本内容为：</li>
+</ol>
+<pre><code>   #!/bin/bash
+   # copy and run this script to the root of the repository directory containing files
+   # this script attempts to exclude uploading itself explicitly so the script name is important
+   # Get command line params
+   while getopts &quot;:r:u:p:&quot; opt; do
+    case $opt in
+        r) REPO_URL=&quot;$OPTARG&quot;
+        ;;
+        u) USERNAME=&quot;$OPTARG&quot;
+        ;;
+        p) PASSWORD=&quot;$OPTARG&quot;
+        ;;
+    esac
+   done
+
+find . -type f -not -path './mavenimport\.sh*' -not -path '*/\.*' -not -path '*/\^archetype\-catalog\.xml*' -not -path '*/\^maven\-metadata\-local*\.xml' -not -path '*/\^maven\-metadata\-deployment*\.xml' | sed &quot;s|^\./||&quot; | xargs -I '{}' curl -u &quot;$USERNAME:$PASSWORD&quot; -X PUT -v -T {} ${REPO_URL}/{} ;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_12.png" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>
+<p>在该目录下点击右键，点击Git Bash Here<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_13.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>打开的窗口中，执行命令</p>
+<pre><code>./mavenimport.sh -u 用户名 -p 密码 -r http://IP:端口/repository/仓库名/
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_14.png" alt="" loading="lazy"></figure>
+</li>
+</ol>
+<p>运行结束后，即可在Nexus仓库中查看上传的构件。</p>
+<h3 id="配置组仓库">配置组仓库</h3>
+<p>我在开发中所采用的组仓库配置策略为，组仓库包含了三方包仓库、代理仓库、发行版仓库、快照版仓库，后续只暴露组仓库的地址即可满足项目从这些仓库中下载构件。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_15.png" alt="" loading="lazy"></p>
+<h2 id="nexus仓库的配置与使用">Nexus仓库的配置与使用</h2>
+<h3 id="修改settingsxml文件">修改settings.xml文件</h3>
+<p>settings.xml是用来设置Maven参数的配置文件，并且settings.xml是maven的全局配置文件，而pom.xml文件是所在项目的局部配置。<br>
+settings.xml中包含类似本地仓储位置、修改远程仓储服务器、认证信息等配置。<br>
+最好直接复制一个配置好的文件进行修改，自己配置容易出错。我在Maven的根目录下，复制了一个settings.xml文件，文件内容如下：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+
+    &lt;!-- 本地仓库地址 --&gt;
+    &lt;!-- &lt;localRepository&gt;C:\Users\Azha\.m2\repository&lt;/localRepository&gt; --&gt;
+
+
+    &lt;!-- 以下配置为上传jar包配置 --&gt;
+    &lt;pluginGroups&gt;
+
+    &lt;/pluginGroups&gt;
+
+    &lt;proxies&gt;
+
+    &lt;/proxies&gt;
+
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;!-- id,对应项目里面pom.xml里面distributionManagement配置的id --&gt;
+            &lt;id&gt;maven-releases&lt;/id&gt;
+            &lt;!-- 登录nexus的用户名 --&gt;
+            &lt;username&gt;admin&lt;/username&gt;
+            &lt;!-- 登录nexus的密码 --&gt;
+            &lt;password&gt;admin123&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;!-- id,对应项目里面pom.xml里面distributionManagement配置的id --&gt;
+            &lt;id&gt;maven-snapshots&lt;/id&gt;
+            &lt;!-- 登录nexus的用户名 --&gt;
+            &lt;username&gt;admin&lt;/username&gt;
+            &lt;!-- 登录nexus的密码 --&gt;
+            &lt;password&gt;admin123&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;!-- 配置拦截器mirror登录的用户名密码。他会拦截所有的请求到mirror指定的地址下载jar包 如果只需要去私服下载jar包则只需配置此项 --&gt;
+        &lt;server&gt;
+            &lt;!-- id，对应mirror中id --&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;username&gt;admin&lt;/username&gt;
+            &lt;password&gt;admin123&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+
+    &lt;!-- 以下配置为下载jar包配置 通用 --&gt;
+
+    &lt;mirrors&gt;
+        &lt;!-- 强制让jar包下载走私服 --&gt;
+        &lt;mirror&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+            &lt;url&gt;http://localhost:9999/repository/maven-public/&lt;/url&gt;
+        &lt;/mirror&gt;
+    &lt;/mirrors&gt;
+
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;!-- 对应activeProfiles-activeProfile的内容 --&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;!-- 仓库地址 --&gt;
+            &lt;repositories&gt;
+                &lt;repository&gt;
+                    &lt;!-- 私服id，覆盖maven-model模块下的父id，让maven不走中央仓库下载，走私服下载 --&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;!-- 名字 --&gt;
+                    &lt;name&gt;Nexus&lt;/name&gt;
+                    &lt;!-- 私服地址，写central后，会去mirror里面找 --&gt;
+                    &lt;url&gt;http://localhost:9999/repository/maven-public/&lt;/url&gt;
+                    &lt;!-- 支持releases版本 --&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;!-- 支持snapshots版本 --&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+            &lt;!-- 插件地址 --&gt;
+            &lt;pluginRepositories&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;name&gt;Nexus Plugin Repository&lt;/name&gt;
+                    &lt;url&gt;http://localhost:9999/repository/maven-public/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+            &lt;/pluginRepositories&gt;
+            &lt;!-- 配置全局的url地址 供上传jar包时动态获取 --&gt;
+            &lt;properties&gt;
+                &lt;ReleaseRepository&gt;http://localhost:9999/repository/maven-releases/&lt;/ReleaseRepository&gt;
+                &lt;SnapshotRepository&gt;http://localhost:9999/repository/maven-snapshots/&lt;/SnapshotRepository&gt;
+            &lt;/properties&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+
+    &lt;!-- 选择使用的profile --&gt;
+    &lt;activeProfiles&gt;
+        &lt;activeProfile&gt;nexus&lt;/activeProfile&gt;
+    &lt;/activeProfiles&gt;
+
+&lt;/settings&gt;
+</code></pre>
+<p>settings.xml参数较多，建议多看看资料，才能有较为深入的了解，否则很容易配置出错导致无法接入Nexus仓库。</p>
+<h3 id="修改pomxml文件">修改pom.xml文件</h3>
+<p>若无需对代码进行打包发布，则无需进行此步骤。如果需要将代码打包上传到Nexus仓库中，则需要配置pom.xml文件，在<project>标签范围内加入如下代码：</p>
+<pre><code>&lt;distributionManagement&gt;
+    &lt;repository&gt;
+        &lt;id&gt;maven-releases&lt;/id&gt;
+        &lt;name&gt;maven-releases&lt;/name&gt;
+        &lt;url&gt;http://localhost:9999/repository/maven-releases/&lt;/url&gt;
+    &lt;/repository&gt;
+
+    &lt;snapshotRepository&gt;
+        &lt;id&gt;maven-snapshots&lt;/id&gt;
+        &lt;name&gt;maven-snapshots&lt;/name&gt;
+        &lt;url&gt;http://localhost:9999/repository/maven-snapshots/&lt;/url&gt;
+    &lt;/snapshotRepository&gt;
+&lt;/distributionManagement&gt;
+</code></pre>
+<p><strong>需要注意的是，仓库的id需要与settings.xml中server的id对应！</strong></p>
+<h3 id="idea配置">IDEA配置</h3>
+<p>打开IDEA的Settings，打开Maven配置，Maven home path选择Maven根目录路径，User settings file选择上个步骤中写好的settings.xml文件，这里<strong>千万要记得勾选Override</strong>才可选择自定义的settings.xml，我将该文件放在了Maven的根目录下，便于后续修改。Local repository是本地仓库的地址，默认为C:\Users\你的用户名.m2\repository下，但会默认读取settings.xml中定义的仓库地址，<strong>勾选了Override后生效</strong>，也可以进一步选择自定义的本地仓库地址。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_16.png" alt="" loading="lazy"></p>
+<p>刷新，Reload All Maven Projects，构件就自动开始下载了！</p>
+<p>如果需要发布自己的代码到仓库中，以此执行Maven的clean-deploy即可，可以在对应release或者snapshot仓库中看到打包好的jar包，后续在生产环境或者测试环境中即可随时拉取使用。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200">Maven基础</a><br>
+<a href="http://c.biancheng.net/nexus/">Nexus（Maven私服搭建）教程</a><br>
+<a href="https://www.jianshu.com/p/2a6a734bd76a">nexus 3.x私服配置（windows版）</a><br>
+<a href="https://blog.csdn.net/lihbps/article/details/104527652">Nexus3.x批量导入本地库(Windows版)</a><br>
+<a href="https://juejin.cn/post/7029225358985527310">Nexus简介及小白使用IDEA打包上传到Nexus3私服详细教程</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[基于Vue的流程图]]></title>
+        <id>https://azha.fun/post/基于Vue的流程图/</id>
+        <link href="https://azha.fun/post/基于Vue的流程图/">
+        </link>
+        <updated>2023-01-05T08:39:08.000Z</updated>
+        <summary type="html"><![CDATA[<p>在工作上遇到了一些关于流程图的需求，第一次接触了Vue。由于需求相对简单且固定，于是在super-flow的基础上，进行了修改，最终的流程图单向流动、可拖拽模块、可自动排序，一次小练手。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在工作上遇到了一些关于流程图的需求，第一次接触了Vue。由于需求相对简单且固定，于是在super-flow的基础上，进行了修改，最终的流程图单向流动、可拖拽模块、可自动排序，一次小练手。</p>
+<!-- more -->
+<ul>
+<li><strong>基础流程图框架：</strong><br>
+基于 <a href="https://caohuatao.github.io">vue-super-flow</a> 开发，由于需求的流程图不存在分支，是单向流动的，所以在此基础上，将节点都固定在一条线上，并且节点之间的间距为固定值。</li>
+<li><strong>可增加新节点</strong></li>
+<li><strong>增加新节点后默认连线：</strong><br>
+添加 node 的时候，就是将新的 node 默认 push 到一个 nodeList 的尾部，因为我们的流程图没有分支，只要是在 nodeList 里的元素按照在数组里的顺序进行连线。</li>
+<li><strong>点击模块可编辑：</strong><br>
+利用一个弹出的 dialog 窗口实现，窗口使用 v-show 指令控制窗口的显示与隐藏，修改节点属性（名称和描述）使用 v-model 控制。</li>
+<li><strong>模块可拖拽</strong></li>
+<li><strong>拖拽后自动调整顺序：</strong><br>
+读取鼠标事件，获取鼠标的坐标（应该只需要 X 坐标），事先定义若干个取值区间，落在哪个区间就把它插在数组的哪个位置，连线就根据数组元素顺序进行连线。</li>
+</ul>
+<p><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E43/E43_01.gif" alt="样例" loading="lazy"><br>
+更多详见<a href="https://github.com/azhaYOLO/vue-super-flow">Github页面</a></p>
+<h2 id="special-thanks-to-vue-super-flow">Special Thanks to vue-super-flow</h2>
+<p>想要了解更多样的流程图？请移步<a href="https://caohuatao.github.io/">vue-super-flow</a>😊</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[冬奥志愿者日记]]></title>
+        <id>https://azha.fun/post/冬奥志愿者日记/</id>
+        <link href="https://azha.fun/post/冬奥志愿者日记/">
+        </link>
+        <updated>2022-03-31T09:17:40.000Z</updated>
+        <summary type="html"><![CDATA[<p>Beijing2022<br>
+很幸运这次能有机会成为一名冬奥志愿者，并遇到了很可靠又很可爱的伙伴以及前辈，在工作中他们给予了很大的教导和帮助👐🏻<br>
+启程的时候北京下了一场大雪，归去的时候北京也飘起了雪，圆满了❄️<br>
+这场冰雪盛会结束了，但关于这场盛会的所有美好回忆，我会永远记得！<br>
+再见Beijing2022！<br>
+一起向未来</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Beijing2022<br>
+很幸运这次能有机会成为一名冬奥志愿者，并遇到了很可靠又很可爱的伙伴以及前辈，在工作中他们给予了很大的教导和帮助👐🏻<br>
+启程的时候北京下了一场大雪，归去的时候北京也飘起了雪，圆满了❄️<br>
+这场冰雪盛会结束了，但关于这场盛会的所有美好回忆，我会永远记得！<br>
+再见Beijing2022！<br>
+一起向未来</p>
+<!-- more -->
+<p>1.11<br>
+试上岗 第一次到北京冬奥村 办公室还没整理出来 一群人在一张桌子上办公 学了校对订单表 建立数据透视表以及整理成物流领域所需要的表 还学了一些邮件回复流转单<br>
+1.12<br>
+第一次参观了冬奥村下沉广场，火炬、火种台、火种灯设计得都好好看；学着与物流领域对接、清点物资，奥运村的居住区的设计和景观都很好看；试着处理了几封邮件。<br>
+1.14<br>
+校对了一下日本的清单，转移到了下沉广场的办公室里，然后去清点了加拿大物资，拿下！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_02.JPG" alt="" loading="lazy"></p>
+<p>1.23<br>
+进入驻地<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_03.jpg" alt="" loading="lazy"><br>
+做了核酸<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_04.jpg" alt="" loading="lazy"><br>
+第一次干饭<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_05.jpg" alt="" loading="lazy"><br>
+收拾了东西，准备就绪<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_06.jpg" alt="" loading="lazy"><br>
+大晚上的去帮忙搬了下防疫物资</p>
+<p>1.24<br>
+好久没有起这么早了<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_07.jpg" alt="" loading="lazy"><br>
+进到村里遇到一个晨跑的外国小姐姐，她很热情地说了一声hi 一时没有反应过来<br>
+第一次在工作人员餐厅干饭 对面的保安大哥太猛了 要了三个鸡蛋两个茶叶蛋<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_08.jpg" alt="" loading="lazy"><br>
+到了服务台，有几个代表团过来询问问题，在服务台和仓库之间来回轮。能够给被人解决问题还是很有意义的<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_09.JPG" alt="" loading="lazy"><br>
+两点半打卡下班（村里伙食不如酒店的好☹️）<br>
+果然还是酒店伙食好啊 牛仔骨吃到撑<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_10.jpg" alt="" loading="lazy"></p>
+<p>1.25<br>
+联系了各个NOC助理，陆续有外国人来服务台咨询问题了，收费卡还收到了第一笔赛事订单，瑞士大叔很热情，我们还一起合照留念了。今天是北方的小年，和小伙伴们一起举杯小小庆祝了一下。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_11.jpg" alt="" loading="lazy"></p>
+<p>1.26<br>
+遇到了最严格的一次安检，感觉检查了得有十分钟，但伙食还有待提升。<br>
+早上遇到了好多事情。日本代表团订单付款未到账的问题，现写了一份承诺书。英国的小姐姐使用现金支付，也是第一次遇到，学了怎么开票、给现金消毒。还学了特制的Excel表单怎么使用。荷兰的环保意识真的很强，好像还把自行车带到中国来了哈哈。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_12.jpg" alt="" loading="lazy"></p>
+<p>1.27<br>
+今天来的人也多了<br>
+处理了好多国家的事务，业务也渐渐熟悉了！基本掌握了做台账的技术。面对越来越多的问题咨询也更得心应手了。和小伙伴们一起拍了新春祝福视频，明天又是早起的一天呀。</p>
+<p>1.28<br>
+越来越多的人来咨询了问题了<br>
+还有很多人下了大单。西班牙上来就把手机库存一扫而光。原来美国也有一大笔钱没有支付。加拿大太逗了，上来就语气严肃地说给他配送的打印机不是他订的，最后发现他订的就不是他想要的。</p>
+<p>1.29<br>
+Intel来交对讲机的钱，第一次这么长时间给外国人当翻译，但还是不顺溜，刚好翻译小姐姐前来救场，人都很nice，希望自己的英语水平能更上一个等级吧！<br>
+今天九华的晚饭令人失望了！<br>
+晚上发了很多纪念品和补给物资<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_13.jpg" alt="" loading="lazy"></p>
+<p>1.30<br>
+休息一天改论文！<br>
+又分了好多防疫物资<br>
+发了个加拿大的pin！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_14.jpg" alt="" loading="lazy"></p>
+<p>1.31<br>
+除夕夜上班！<br>
+来了个加拿大的小姐姐，一直显示余额不足，想了好多办法，后来她的伙伴来刷卡了，但她的伙伴wechat被封了，求助我们，但最后还是没能帮她解封。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_15.jpg" alt="" loading="lazy"><br>
+跑了两趟巴赫的房间送插线板，里边的官员态度好差，紧张的差点说不出话了！第一次穿防护服感觉好奇特。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_16.jpg" alt="" loading="lazy"><br>
+除夕夜村里的伙食依旧令人心寒呜呜！<br>
+一到九点紧急下班，回到九华贴了春联和小老虎的画，收到了代金券红包，感觉有年味了！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_17.jpg" alt="" loading="lazy"><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_18.jpg" alt="" loading="lazy"></p>
+<p>2.1<br>
+下午忙了捷克大姐订购TV的事情，因为电视信号的问题并且赶时间还纠缠了一会儿，但后来大姐也开心地笑了。韩国一堆事情，感觉NOC助理一通翻译后，有了点矛盾，最后去给人家送白板和打印纸时，韩国小姐姐还有说有笑地送了三个徽章。我还是始终相信好的态度会传递给他人，除非是特别不讲道理的人。<br>
+今天村里的餐厅供应了饮料！赞！</p>
+<p>2.2<br>
+今天早上没什么人，昨天的新西兰台账问题找出原因了。<br>
+去领了饮用水和防疫物资<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_19.jpg" alt="" loading="lazy"><br>
+整理了下文件。<br>
+下班出门遇见三个中国队的姑娘，感觉里面有个长得像谷爱凌？！！</p>
+<p>2.3<br>
+整理了下台账。领了些物资。通知NOC助理们来订购插线板。<br>
+牙疼！好疼好疼好疼好疼！！！</p>
+<p>2.4<br>
+休息日！<br>
+奥运会开幕啦！<br>
+StrongerTogether<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_20.jpg" alt="" loading="lazy"></p>
+<p>2.5<br>
+今日没有大事发生<br>
+终于去到广场区逛了逛！<br>
+狠狠消费了一把 买了邮册和徽章<br>
+nice！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_21.jpg" alt="" loading="lazy"></p>
+<p>2.6<br>
+又是无事发生的一天！<br>
+一个下午竟然没有一笔订单<br>
+一天就只有一笔sim卡的订单<br>
+然后各个部门成立了摸鱼群😂</p>
+<p>2.7<br>
+赛时果然很闲了！<br>
+今天遇到了阿根廷速度滑冰的小姐姐！<br>
+过去和她照了合照！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_22.JPG" alt="" loading="lazy"><br>
+她很热情，期待她13号的比赛！<br>
+而且过几天竟然要开始上二休三了？？</p>
+<p>2.8<br>
+今天是谷爱凌摘奖牌首秀！<br>
+整个NOC中心都坐满了志愿者！<br>
+这种观赛氛围太好了<br>
+晚上在驻地酒店有换pin的活动<br>
+但俺还是舍不得代表团送的徽章<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_23.jpg" alt="" loading="lazy"></p>
+<p>2.9<br>
+休假<br>
+驻地酒店志愿者组织了观星活动<br>
+感觉北大那个志愿者在发光<br>
+真好<br>
+这就是浪漫吧<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_24.jpg" alt="" loading="lazy"></p>
+<p>2.10<br>
+业务 〇<br>
+😭</p>
+<p>2.11<br>
+业务 〇<br>
+领了物资</p>
+<p>2.12<br>
+休假</p>
+<p>2.13<br>
+休假<br>
+大雪</p>
+<p>2.14<br>
+休假<br>
+情人节</p>
+<p>2.15<br>
+穿得厚厚的来上班<br>
+去领了防疫物资<br>
+代表团陆续要离村了<br>
+开了咨询会<br>
+现在估计要忙起来了<br>
+去旗帜广场逛了一圈<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_25.jpg" alt="" loading="lazy"><br>
+元宵节快乐<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_26.jpg" alt="" loading="lazy"></p>
+<p>2.16<br>
+今天和赵哥哥做了一天的签出表和落位图<br>
+分了个数字胸牌<br>
+临走前还和阿塞拜疆的运动员换了pin<br>
+又有活干又有纪念品的一天<br>
+真的是太开心了！！</p>
+<p>2.17<br>
+休假</p>
+<p>2.18<br>
+休假</p>
+<p>2.19<br>
+休假</p>
+<p>2.20<br>
+第一次办理签出<br>
+标准扫楼很熬人</p>
+<p>2.21<br>
+今天活很多<br>
+但是收获了一些些纪念品<br>
+意识到马上要结束这段旅程了<br>
+很舍不得<br>
+冬奥 整个过程 就是美好的</p>
+<p>2.22<br>
+今天又扫楼了<br>
+很累<br>
+但是更多的是要离开冬奥村的负面情绪<br>
+真的很不舍<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_27.JPG" alt="" loading="lazy"><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_28.JPG" alt="" loading="lazy"></p>
+<p>2.23<br>
+完成了美国的扫楼<br>
+下岗了<br>
+跑着出村的<br>
+圆满了<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E42/E42_29.JPG" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[二〇二一.八.八 杂记]]></title>
+        <id>https://azha.fun/post/二〇二一.八.八 杂记/</id>
+        <link href="https://azha.fun/post/二〇二一.八.八 杂记/">
+        </link>
+        <updated>2021-08-08T04:09:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>好久没有更新博客了，脑海中积攒了好多零零散散的想法。想要把它们杂七杂八地表达出来，也符合我目前有一些杂七杂八的小目标，以及我现在浮躁且一团打结毛线球般的心境。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>好久没有更新博客了，脑海中积攒了好多零零散散的想法。想要把它们杂七杂八地表达出来，也符合我目前有一些杂七杂八的小目标，以及我现在浮躁且一团打结毛线球般的心境。</p>
+<!-- more -->
+<p>首先我很庆幸自己折腾了这么一个博客，可以让自己的思绪有个出口。近来越来越觉得「输出」是一个很重要的过程。它可以是总结过往的知识以及经验，在这个过程中，会发现一些自己曾经忽略的点，会对已有的认知有进一步的巩固和提升；也可以是情绪的收集站，任何大幅度波动的情绪都可以往这里面投送，避免自己被情绪左右，也让没有逻辑可循的情绪似乎有那么一点合理性。当然，还有一部分原因是自己不知道为什么，似乎不太有能向身边朋友倾诉自己的烦恼、负面想法的勇气了。这个博客作为「我」，还承担了「我的朋友」的这一身份👥</p>
+<p><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E40/E40_02.jpg" alt="研究生生涯700天" loading="lazy"><br>
+这篇博文原计划8.3完成，那天恰好是我研究生生涯的700天，但到今天正式下笔，已经是8.8了。期间这五天，我的宝贝从家乡回到北京，我们在一起度过一段十分快乐的时光，自己的情绪也得以平静了一些。我应该是一个不太能承受孤独的人，所以我很珍视身边的朋友关系、爱情、亲情，他们就好像我在孤独的汪洋中紧紧地抓着的那一条绳索。</p>
+<p>今天距离2021年结束还有145天。在2021年的头几天，我设定了「🎯我的2021小目标」，现在盘点一下进度</p>
+<ul>
+<li>发表一篇小论文 <strong>[进行中，预计八月十五完成初稿，九月份前完成修改并投出]</strong></li>
+<li>发表一篇专利 <strong>[进行中，已提交给专利代理修改]</strong></li>
+<li>拿到至少三份工作offer <strong>[我决定放弃投递大厂的提前批，首选单位是家乡的国家电网，还有在考虑各大银行以及烟草公司]</strong></li>
+<li>毕业大论文完成90% <strong>[进度0，等待小论文投递出再着手，还有一些内容布局需要考虑，得抓紧！！]</strong></li>
+<li><s>找一份实习</s> <strong>[这个小目标被移除了，请教了身边很多朋友的建议，由于我不打算进入互联网大厂，实习经历可能帮不上什么忙，而且会与秋招冲突，故移除]</strong></li>
+</ul>
+<p>在高校学习的这段时光，提升最多的应该就是自学能力以及找资料的能力，导师能给的帮助实在有限，方方面面都需要自己有足够的能力去完成自己想要达成的目标。前阵子看到了<a href="https://sspai.com/">少数派</a>上一篇写的很不错的文章，十分有共鸣，可惜不能够转载，在这里放上链接，感兴趣的朋友可以阅读一下：<a href="https://sspai.com/prime/story/vol03-becoming-a-coder">《从入门到程序员初长成：这是我的 Roadmap》</a>。</p>
+<p>这段时间还在炜哥的鼓励下有意的树立了一些习惯目标，也算是为磨练自己成为冬奥志愿者的能力，比如每天锻炼（也想在自己24岁生日的时候，送自己一个好身材以及健康的体魄）、背单词提升英语水平（我一直很希望自己能够熟练掌握一门外语语言，甚至多门），总之就是希望自己能有一些良好的生活习惯，不至于过得太消极。<br>
+阿扎，请再接再厉！</p>
+<p>写这篇博文的时候，发现自己用了一些模棱两可的副词，“似乎”、“好像”、“应该”、“大概”……。可能我就很抗拒把一件事情说得很彻底，以至于后续没有迂回的余地。这是不是一个好的习惯，我不知道。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[在 Windows 上构建 Airsim]]></title>
+        <id>https://azha.fun/post/在 Windows 上构建 Airsim/</id>
+        <link href="https://azha.fun/post/在 Windows 上构建 Airsim/">
+        </link>
+        <updated>2020-11-06T05:45:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>AirSim是一个基于虚幻引擎的无人机、汽车及其他交通工具的仿真模拟器。它是开源的、跨平台的，支持使用流行的飞行控制器进行软件在环仿真，以及硬件在环仿真，以实现物理和视觉上的逼真仿真。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>AirSim是一个基于虚幻引擎的无人机、汽车及其他交通工具的仿真模拟器。它是开源的、跨平台的，支持使用流行的飞行控制器进行软件在环仿真，以及硬件在环仿真，以实现物理和视觉上的逼真仿真。</p>
+<!-- more -->
+<h2 id="安装虚幻引擎">安装虚幻引擎</h2>
+<ol>
+<li><a href="https://www.unrealengine.com/download">下载</a> Epic Games Launcher 。虽然虚幻引擎是开源的，可以免费下载，但仍需要注册。</li>
+<li>运行 Epic Games Launcher ，打开左侧窗格中的<strong>虚幻引擎</strong>选项卡。单击右上角的<strong>安装虚幻引擎</strong>按钮，该按钮应显示下载<strong>虚幻引擎 &gt;= 4.25 <strong>的选项。选择适合您需求的安装位置。如果您安装了多个版本的虚幻版本，则通过单击该版本的</strong>启动</strong>按钮旁边的向下箭头，<strong>确保正在使用的版本设置为当前版本</strong>。</li>
+</ol>
+<p><strong>注意</strong>： AirSim 也适用于 UE &gt;= 4.22，但是，建议您更新到 &gt;= 4.24。<br>
+<strong>注意</strong>：如果您有 UE 4.16 或更旧的项目，请参阅<a href="https://microsoft.github.io/AirSim/unreal_upgrade/">升级指南</a>以升级您的项目。</p>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E39/E39_02.png" alt="虚幻引擎安装成功" loading="lazy"></figure>
+<h2 id="构建-airsim">构建 AirSim</h2>
+<ul>
+<li>安装 Visual Studio 2019 。在安装 VS 2019 时请 <strong>确保</strong>勾选<strong>使用 C++ 的桌面开发</strong>和** Windows 10 SDK 10.0.18362 <strong>（应该为默认选择）。<br>
+<strong>注意</strong>：可能还需要勾选</strong> .NET 桌面开发**，在后续的操作中避免缺少组件出现的错误。</li>
+<li>安装成功后，以管理员方式运行 <strong>Developer Command Prompt for VS 2019</strong> 。</li>
+<li><strong>注意</strong>：可在开始菜单中搜索 <strong>Developer Command Prompt for VS 2019</strong> 。</li>
+<li>克隆存储库： <code>git clone https://github.com/Microsoft/AirSim.git</code>  ，然后 <code>cd AirSim</code> 转到 AirSim 目录。<br>
+**注意：**在 C 盘中安装 AirSim 通常不是个好主意。这可能会导致脚本失败，并且需要以管理员身份运行 VS 。而是在其他驱动器（如 D 或 E 盘）中克隆。</li>
+<li>在命令行执行 <code>build.cmd</code> 。这将在 <strong>Unreal\Plugins</strong> 文件夹中创建可使用并可拖入任何 Unreal Project 中的插件。</li>
+</ul>
+<h2 id="构建-unreal-project">构建 Unreal Project</h2>
+<p>最后，您将需要一个 Unreal Project 为您的车辆承载环境。AirSim 附带一个内置的&quot; <strong>Block</strong> 环境供您使用，或者您也可以创建自己的 Unreal Projec t。请参阅<a href="https://microsoft.github.io/AirSim/unreal_proj/">设置 Unreal Project </a>。<br>
+要快速熟悉并且运行，您可以使用 AirSim 附带的 <strong>Block</strong> 项目。为了保持仓库合理的大小，这并不是非常详细的环境，但这是最简单的方法去使用它的进行各种测试。<br>
+<strong>Block</strong> 环境可在仓库中获取，位于文件夹 <strong>UnReal/Environment/Block</strong> 中，并且设计为轻量级。这意味着它非常基础，但速度很快。以下是启动和运行<strong>Block</strong>环境的快速步骤：</p>
+<ol>
+<li>确保已 <a href="https://microsoft.github.io/AirSim/build_windows/">安装并且构建 AirSim </a>。</li>
+<li>定位到 <strong>AirSim\Unrea\Environments\Blocks</strong> 目录下并运行 <strong>update_from_git.bat</strong> 。<br>
+<strong>注意</strong>：如果报错提示：系统找不到指定的路径; 不是内部或外部命令，也不是可运行的程序或批处理文件。解决方法：先重启 Epic Games Launcher ，重启后会弹出工程文件关联的提示。</li>
+<li>双击生成的 .sln 文件以在 Visual Studio 2019 中打开。</li>
+<li>在解决方案资源管理器中右击 <strong>Block</strong> 项目，选择<strong>设为启动项目</strong>，选中 <strong>Block</strong> 项目，打开<strong>生成</strong>里的<strong>配置管理器</strong>，<strong>配置</strong>选择 <strong>Development_Editor</strong> ，<strong>平台</strong>选择<strong>x64</strong> ，点击<strong>调试</strong>里的<strong>开始调试</strong>（或者按 F5 ），此时应该自动打开虚幻编辑器。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E39/E39_03.png" alt="配置管理器" loading="lazy"></li>
+<li>点击虚幻编辑器里上方的<strong>运行</strong>按钮，进入游戏状态，如果想用四旋翼飞行器，就在弹出的对话框中点击 no ，如果想用小车，点击的 Yes ，你会看见如下图的场景。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E39/E39_04.png" alt="虚幻编辑器" loading="lazy"></li>
+</ol>
+<h2 id="如何使用-airsim">如何使用 AirSim</h2>
+<p>通过执行上述步骤设置 AirSim 后，您可以，</p>
+<ol>
+<li>在<strong>Unreal\Environments\Blocks</strong>目录下双击 .sln 文件，加载 <strong>Block</strong> 项目（或您自己的<a href="https://microsoft.github.io/AirSim/unreal_custenv/">创建</a>的虚幻项目）。如果您没有看到 .sln 文件，则可能尚未完成上述**构建 Unreal Project **部分中的步骤。</li>
+<li>选择您的 Unreal Project 作为启动项目（例如， <strong>Block</strong> 项目），并确保<strong>生成配置</strong>设置为<strong>Development_Editor</strong> ，<strong>平台</strong>选择<strong>x64</strong> 。</li>
+<li>加载虚幻编辑器后，点击<strong>运行</strong>按钮。<br>
+<strong>提示</strong>：点击菜单栏里的<strong>编辑</strong>，点击<strong>编辑器偏好设置</strong>，在搜索框中输入 <strong>CPU</strong> ，取消勾选<strong>处于背景时占用较少CPU</strong>。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E39/E39_05.png" alt="编辑器偏好设置" loading="lazy"></li>
+</ol>
+<p>请参阅 <a href="https://microsoft.github.io/AirSim/apis/">使用 APIs</a> 和 <a href="https://microsoft.github.io/AirSim/settings/">settings.json</a>供更多选择。</p>
+<h2 id="使用-python-控制">使用 Python 控制</h2>
+<p><strong>提示</strong>：请提前安装好 Anaconda3 和 pip 。</p>
+<ol>
+<li>以管理员身份运行 cmd ，执行 <code>pip install airsim</code> ，该命令安装了囊括 <strong>Python API for AirSim</strong> 的 Python 包。该包依赖 <strong>msgpack</strong> 包并且会自动安装 <strong>msgpack-rpc-python</strong> 包，（可能需要管理员或者 sudo 权限）。<br>
+<strong>注意</strong>：有的例子还需要 <strong>opencv</strong> 包。</li>
+<li>在 <strong>\PythonClient\car</strong> 目录下，使用 cmd 执行 <code>python hello_car.py</code> ，便能看到小车根据 Python 文件中编写好的命令自动运行了！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E39/E39_06.gif" alt="  Python 控制小车" loading="lazy"></li>
+</ol>
+<p>Enjoy🎉</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://microsoft.github.io/AirSim/build_windows/">Build AirSim on Windows</a><br>
+<a href="https://pypi.org/project/airsim/">airsim · PyPI</a><br>
+<a href="https://blog.csdn.net/qq_31880107/article/details/94547716">win10-airsim-Unreal 安装配置教程(踩坑)</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[FATE单机部署指南]]></title>
+        <id>https://azha.fun/post/FATE单机部署指南/</id>
+        <link href="https://azha.fun/post/FATE单机部署指南/">
+        </link>
+        <updated>2020-10-30T09:54:23.000Z</updated>
+        <summary type="html"><![CDATA[<p>FATE (Federated AI Technology Enabler) 是微众银行AI部门发起的开源项目，为联邦学习生态系统提供了可靠的安全计算框架。FATE项目使用多方安全计算 (MPC) 以及同态加密 (HE) 技术构建底层安全计算协议，以此支持不同种类的机器学习的安全计算，包括逻辑回归、基于树的算法、深度学习和迁移学习等。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>FATE (Federated AI Technology Enabler) 是微众银行AI部门发起的开源项目，为联邦学习生态系统提供了可靠的安全计算框架。FATE项目使用多方安全计算 (MPC) 以及同态加密 (HE) 技术构建底层安全计算协议，以此支持不同种类的机器学习的安全计算，包括逻辑回归、基于树的算法、深度学习和迁移学习等。</p>
+<!-- more -->
+<p><strong>本文转载自「FedAI」。<a href="https://github.com/FederatedAI/FATE/blob/master/standalone-deploy/doc/Fate-standalone_deployment_guide_zh.md">点此了解更多</a>。</strong></p>
+<p>服务器配置：</p>
+<table>
+<thead>
+<tr>
+<th><strong>数量</strong></th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>配置</strong></td>
+<td>8 core / 16G memory / 500G hard disk</td>
+</tr>
+<tr>
+<td><strong>操作系统</strong></td>
+<td>Version: CentOS Linux release 7</td>
+</tr>
+<tr>
+<td><strong>用户</strong></td>
+<td>User: app owner:apps</td>
+</tr>
+</tbody>
+</table>
+<p>单机版提供2种部署方式，可以根据实际情况选择：</p>
+<ul>
+<li>
+<p>使用Docker镜像安装FATE（推荐）</p>
+</li>
+<li>
+<p>在主机中安装FATE</p>
+</li>
+</ul>
+<h4 id="1-使用docker镜像安装fate推荐">1) 使用Docker镜像安装FATE（推荐）</h4>
+<p>建议使用docker镜像，这样可以大大降低遇到问题的可能性。</p>
+<ol>
+<li>
+<p>主机需要能够访问外部网络，从公共网络中拉取安装包和docker镜像。</p>
+</li>
+<li>
+<p>依赖<a href="https://download.docker.com/linux/">docker</a>和<a href="https://github.com/docker/compose/releases/tag/1.24.0">docker-compose</a>，docker建议版本为18.09，docker-compose建议版本为1.24.0，您可以使用以下命令验证docker环境：docker --version和docker-compose --version，docker的起停和其他操作请参考docker --help。</p>
+</li>
+<li>
+<p>执行之前，请检查8080、9360和9380端口是否已被占用。 如果要再次执行，请使用docker命令删除以前的容器和镜像。</p>
+<p>请按照以下步骤操作:</p>
+<pre><code>#获取安装包
+wget https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/docker_standalone-fate-1.5.0_preview.tar.gz
+tar -xzvf docker_standalone-fate-1.5.0_preview.tar.gz
+
+#执行部署
+cd docker_standalone-fate-1.5.0_preview
+bash install_standalone_docker.sh
+</code></pre>
+<p>如果在安装脚本文件时提示权限不足的问题，请使用 <code>sudo -i</code> 进行操作。</p>
+</li>
+<li>
+<p>测试</p>
+<ul>
+<li>单元测试</li>
+</ul>
+<pre><code>CONTAINER_ID=`docker ps -aqf &quot;name=fate_python&quot;`
+docker exec -t -i ${CONTAINER_ID} bash
+bash ./python/federatedml/test/run_test.sh
+</code></pre>
+<p>如果成功，屏幕显示类似下方的语句:</p>
+<pre><code>there are 0 failed test
+</code></pre>
+<ul>
+<li>Toy测试</li>
+</ul>
+<pre><code>CONTAINER_ID=`docker ps -aqf &quot;name=fate_python&quot;`
+docker exec -t -i ${CONTAINER_ID} bash
+python ./examples/toy_example/run_toy_example.py 10000 10000 0
+</code></pre>
+<p>如果成功，屏幕显示类似下方的语句:</p>
+<pre><code>success to calculate secure_sum, it is 2000.0
+</code></pre>
+</li>
+</ol>
+<p>有些用例算法在 <a href="../../examples/dsl/v2">examples</a> 文件夹下, 请尝试使用。</p>
+<p>您还可以通过浏览器体验算法过程看板，访问：Http://hostip:8080。</p>
+<h4 id="2-在主机中安装fate">2) 在主机中安装FATE</h4>
+<ol>
+<li>
+<p>检查本地8080、9360、9380端口是否被占用。</p>
+<pre><code>netstat -apln|grep 8080
+netstat -apln|grep 9360
+netstat -apln|grep 9380
+</code></pre>
+</li>
+<li>
+<p>下载独立版本的压缩包并解压缩。</p>
+<pre><code>wget https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/standalone-fate-master-1.5.0_preview.tar.gz
+tar -xzvf  standalone-fate-master-1.5.0_preview.tar.gz
+</code></pre>
+</li>
+<li>
+<p>进入FATE目录并执行init.sh。</p>
+<pre><code>cd standalone-fate-master-1.5.0_preview
+sh init.sh init
+</code></pre>
+</li>
+<li>
+<p>测试</p>
+<ul>
+<li>单元测试</li>
+</ul>
+<pre><code>cd standalone-fate-master-1.5.0_preview
+source bin/init_env.sh
+bash ./python/federatedml/test/run_test.sh
+</code></pre>
+<p>如果成功，屏幕显示类似下方的语句:</p>
+<pre><code>there are 0 failed test
+</code></pre>
+<ul>
+<li>Toy测试</li>
+</ul>
+<pre><code>cd standalone-fate-master-1.5.0_preview
+source bin/init_env.sh
+python ./examples/toy_example/run_toy_example.py 10000 10000 0
+</code></pre>
+<p>如果成功，屏幕显示类似下方的语句:</p>
+<pre><code>success to calculate secure_sum, it is 2000.0
+</code></pre>
+</li>
+</ol>
+<p>有些用例算法在 <a href="../../examples/dsl/v2">examples</a> 文件夹下, 请尝试使用。</p>
+<p>您还可以通过浏览器体验算法过程看板，访问：Http://hostip:8080。</p>
+<p><strong>本文转载自「FedAI」。<a href="https://github.com/FederatedAI/FATE/blob/master/standalone-deploy/doc/Fate-standalone_deployment_guide_zh.md">点此了解更多</a>。</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[博客迁移 HEXO→Gridea]]></title>
+        <id>https://azha.fun/post/博客迁移 HEXO→Gridea/</id>
+        <link href="https://azha.fun/post/博客迁移 HEXO→Gridea/">
+        </link>
+        <updated>2020-10-26T03:40:57.000Z</updated>
+        <summary type="html"><![CDATA[<p>无意间在我的订阅收藏里看到一篇关于轻量化博客应用的文章，仔细阅读之后狂喜——这不就是我想要的轻量化博客写作客户端嘛！于是花费了几个小时完成了博客从HEXO到Gridea的迁移工作</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>无意间在我的订阅收藏里看到一篇关于轻量化博客应用的文章，仔细阅读之后狂喜——这不就是我想要的轻量化博客写作客户端嘛！于是花费了几个小时完成了博客从HEXO到Gridea的迁移工作</p>
+<!--more-->
+<p>Gridea 是一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点。<br>
+最大的优点就是让你能够像写微博一样轻松地写博客，而不需要太多的顾及代码部分的内容。</p>
+<p><strong>本文转载自「Gridea」。<a href="https://gridea.dev/">点此了解更多</a>。</strong></p>
+<h2 id="安装">安装</h2>
+<ol>
+<li>安装 <a href="https://gridea.dev/">Gridea</a></li>
+</ol>
+<h2 id="写作">写作</h2>
+<p>相信你自己可以搞得定哦，加油写作啦！</p>
+<h2 id="发布">发布</h2>
+<blockquote>
+<p>Gridea 提供了将博客部署到 GitHub Pages、Coding Pages 和通过 SFTP 的方式上传到自己的服务器的功能。下面将以 GitHub 为例，来讲一下部署流程。</p>
+</blockquote>
+<ol>
+<li><strong>创建 GitHub 账号，并创建一个仓库 Token</strong>。点击<a href="https://github.com/">GitHub</a>，进行注册。登录 GitHub 之后，点击<a href="https://github.com/settings/tokens/new">这里</a>创建一个 Token，<strong>勾选上 repo 的相关权限即可</strong>。生成之后记得把 Token 复制到你的本地，因为一旦关闭网页将不能再看到它。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_02.png" alt="img" loading="lazy"><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_03.png" alt="img" loading="lazy"></li>
+<li><strong>创建仓库，存放构建后的网站文件</strong>。创建一个公开仓库，名为<strong>用户名.github.io</strong>。（将用户名替换为你的 GitHub 用户名）<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_04.png" alt="img" loading="lazy"></li>
+<li><strong>进入 Gridea 进行远程设置</strong>。按照下图的示例进行设置，然后点击「检测远程链接」，进行配置检查。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_05.png" alt="img" loading="lazy"></li>
+<li><strong>同步</strong>。点击 Gridea 中的 同步按钮即可。初次部署等待几分钟之后就可以去浏览器访问了，默认地址为你在第 3 步所填写的域名。</li>
+</ol>
+<p>以上，就完成一个静态博客的搭建了，期待你的每一次落笔成文。</p>
+<p>Enjoy~</p>
+<blockquote>
+<p>附：社区小伙伴录制的 Gridea 教程</p>
+</blockquote>
+<p><a href="https://www.bilibili.com/video/av54010923">Gridea快速上手-1-前言</a><br>
+<a href="https://www.bilibili.com/video/av54011033">Gridea快速上手-3-Gridea与Github的配置</a><br>
+<a href="https://www.bilibili.com/video/BV1dV41167HE">Gridea静态博客最新教程（Coding的部署）</a><br>
+<a href="https://www.bilibili.com/video/av69627579/">10分钟搭建博客——Gridea</a></p>
+<h2 id="如何将-hexo-文章导入-gridea">如何将 Hexo 文章导入 Gridea</h2>
+<p>十分简单！目前，你可以将 markdown 文章手动复制到源文件夹中的 posts 文件夹中 （默认是<code>~/Documents/Gridea/posts</code>），然后打开应用检查文章内容。若文章中有图片，则需额外编辑即可。本次迁移工作最大的工作量就是在封面图的重新匹配上，以及对博客的个性化上。</p>
+<p>提示：从 <strong>Hexo</strong> 导入的文章将抛弃 分类（Categories）信息，因为在 <strong>Gridea</strong> 中只有 标签（Tag）的概念。</p>
+<p><strong>本文转载自「Gridea」。<a href="https://gridea.dev/">点此了解更多</a>。</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[浅谈联邦学习]]></title>
+        <id>https://azha.fun/post/浅谈联邦学习/</id>
+        <link href="https://azha.fun/post/浅谈联邦学习/">
+        </link>
+        <updated>2020-10-15T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>在人工智能领域，传统的数据处理模式往往是一方收集数据，再转移到另一方进行处理、清洗并建模，最后把模型卖给第三方。但随着法规完善和监控愈加严格，如果数据离开收集方或者用户不清楚模型的具体用途，运营者都可能会触犯法律。数据是以孤岛的形式存在的，解决孤岛的直接方案就是把数据整合到一方进行处理。但是，现在这样做很可能是违法的，因为法律不允许运营者粗暴地进行数据聚合。如何合法地解决数据孤岛问题应该引起人工智能学者和从业者的深思，因为大数据面临的这个困境很可能就是导致人工智能下一个冬天的导火线。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在人工智能领域，传统的数据处理模式往往是一方收集数据，再转移到另一方进行处理、清洗并建模，最后把模型卖给第三方。但随着法规完善和监控愈加严格，如果数据离开收集方或者用户不清楚模型的具体用途，运营者都可能会触犯法律。数据是以孤岛的形式存在的，解决孤岛的直接方案就是把数据整合到一方进行处理。但是，现在这样做很可能是违法的，因为法律不允许运营者粗暴地进行数据聚合。如何合法地解决数据孤岛问题应该引起人工智能学者和从业者的深思，因为大数据面临的这个困境很可能就是导致人工智能下一个冬天的导火线。</p>
+<!--more-->
+<h2 id="人工智能时代浮现的问题">人工智能时代浮现的问题</h2>
+<h3 id="数据安全问题">数据安全问题</h3>
+<p>随着信息技术的快速发展，硬件设备和数据的广泛利用为人工智能发展提供了广阔的应用空间和广泛的应用条件。但从2014年以来，数据泄漏问题开始得到公众关注，每年都有大量数据隐私泄露事件发生，数据使用的合法性和使用界限开始成为各行业关心的问题。2018年5月25日，欧盟正式生效《通用数据保护条例》（General Data Protection Regulation，GDPR）。中国于2019年4月正式发布《互联网个人信息安全保护指南》、2017年起实施《中华人民共和国网络安全法》和《中华人民共和国民法总则》。法律条例对于人工智能传统的数据处理建模模式形成了极大挑战。在一个需要互联共享的信息共享环境下，如何在符合法律法规的用户数据隐私安全条件下，进行多方数据资源的利用，成为了各企业利用数据时中面临的重要问题。</p>
+<h3 id="数据孤岛问题">数据孤岛问题</h3>
+<p>人工智能领域，往往需要足量数据进行机器学习来产生良好的建模效果。”能否掌握足量优质的数据，决定了人工智能训练效果的优劣。在实际工业环境中，仅仅一家企业难以只利用自身数据推测用户多元化多平台的消费习惯。为了更精准的做出决策，需要充分利用信息资源。市场开始要求大规模数据平台使用多种情况下的最佳训练效果。然而许多企业训练方拥有的数据量不足，规模与质量不完备。数据来源不够，导致机器学习系统效果不理想。不同的网站、研究者、广告商和商业机构想要将彼此的数据汇总或者统一整理进行训练，传统的处理模式之一是将不同源数据整合，形成聚合数据库，虽然聚合数据库能实现对多个独立的数据库进行相互操作，但过程中存在各单元数据库的交互过程，面临着交互过程中的安全风险，无法保证隐私安全的后果。另外，实际情况下，数据源往往分布在企业和个人，相互独立隔阂，形成了一个个阻碍技术发展的“数据孤岛”。</p>
+<h2 id="联邦学习">联邦学习</h2>
+<p>联邦学习的提出是满足隐私保护和信息安全、“数据孤岛问题”的解决方案。联邦学习允许从跨数据所有者分布的数据中构建集合模型，提供了跨企业的数据使用方式和模型构建蓝图，适用于B2B和B2C等业务，可被广泛应用于各种领域，实现各个企业的自有数据不出本地，只通过加密机制下的参数交换，不违反数据隐私法规地建立优化机器学习模型。在保护数据隐私安全，合法合规要求前提下，达成机器学习效果的强化，将人工智能重点从以AI基础算法为中心转移到以保障安全隐私的大数据架构为中心。</p>
+<p>2016年，Google AI研究人员首次提出用于训练深度学习网络的联邦学习。谷歌尝试建立数百万安卓设备之间的联邦模型，用于移动设备分散数据训练，解决隐私保护问题。2019年2月，Google发布实现了全球首个产品级的超大规模移动端分布式机器学习系统，能够在数千万部手机的安卓键盘上运行联邦学习算法，谷歌的研究主要侧重于在移动终端上运行的联合平均算法。</p>
+<p>多个数据拥有方想要共同训练模型，传统做法是将数据整合到一方进行训练，但是这样无法保证数据隐私和传输过程的安全性。相对于以往的分布式机器学习方式，联邦学习具有以下特征：数据不脱离本地；参与者利用自身拥有的数据训练全局模型；每个参与方都参与学习过程；模型损失可控；训练过程中考虑隐私和安全。参与各方能够在不披露底层数据和底层数据的加密形态的前提下共建模型，使联邦学习成为未来安全多方机器学习的新曙光。</p>
+<h3 id="联邦学习的分类">联邦学习的分类</h3>
+<h4 id="从联合方式分类">从联合方式分类</h4>
+<p>联合方式上，可以将联邦学习分为单方和多方两种方式。单方联邦学习是指从一个实体进行分布式内容抓取和系统管理。模型以联合的方式训练在所有客户端设备中具有相同结构的数据上。大多数情况下每个数据点对于设备或用户唯一。例如，应用程序通过单方联邦学习为个人用户推荐音乐的推荐引擎。多方联邦学习则需要两个或多个组织或特许经营商组成联盟。在其各自的数据集上训练共享模型。例如，多家银行可以培训一种通用的强大欺诈检测模型，而无需相互分享敏感的客户数据。</p>
+<h4 id="从用户和用户特征结构分类">从用户和用户特征结构分类</h4>
+<p>参与各方的数据结构和参数通常相似但不必相同，根据不同的数据的特征分布形式，如同数据库原理中的数据特征分布状态，联邦学习又分为三种不同处理方式：横向、纵向和迁移。参与方们的数据集具有高度重叠的特征维度，样本重叠较小时，称为横向联邦学习。参与方们的数据集具有高度重叠的样本纬度，特征维度重叠较小时，使用方法称为纵向联邦学习。如果参与方们数据集在样本和特征维度上都没有足够的重叠，则使用联邦迁移学习。</p>
+<h3 id="隐私保护下的技术工具">隐私保护下的技术工具</h3>
+<p>参与方们在参与联邦学习的过程中需要使用工具来进行数据的隐私保护。联邦学习的主要的工具包括安全多方计算，同态加密，私密共享和差分隐私。参与方们可以利用安全多方计算保证信息层面的数据安全。安全多方计算成本较高，为降低数据传输成本，参与方们可能需要在降低对数据安全的要求来提高训练的效率。同态加密能够对所有数据进行加密处理，参与方们接收到的是密文，使攻击者无法推理出原始数据信息，保障数据层面的安全。在实际应用中，为了提高计算效率，参与方们一般采用半同态加密，半同态加密可以使用加法和乘法进行同态加密。差分隐私可以用于参与方本地数据信息安全的保护，通过在参与方各自的原始数据上不断加噪音来减弱任意一方数据对于整体数据的影响。其缺点在于牺牲训练效果，过多的噪音会降低模型训练的效果，参与方们在使用差分隐私时需要在数据安全和准确度上进行取舍。</p>
+<h3 id="联邦学习的现状和发展">联邦学习的现状和发展</h3>
+<h4 id="联邦学习的框架和标准化制定">联邦学习的框架和标准化制定</h4>
+<p>联邦学习的技术框架建设方面。谷歌首先提出开源的离散数据联邦学习应用框架TensorFlow Federated (TFF)。TensorFlow Federated主要支持利用如今数量众多的移动智能终端设备和边缘端计算设备的计算能力，保证数据不离开本地的同时训练本地机器学习模型，通过Google开发的Federated Averaging 算法，即使在较差的通信环境下，也能实现保密、高效、高质量的模型汇总和迭代流程，且移动端和边缘端用户体验上不做任何牺牲和妥协。目前Google已经将联邦学习应用在移动设备键盘输入预测上。</p>
+<p>在学术研究与行业应用上，腾讯发起的中国首家互联网银行——微众银行正在积极探索。在国际人工智能专家、微众银行首席人工智能官杨强教授带领下的AI 团队开源了首个联邦学习“FATE（FederatedAI Technology Enabler)” 工业框架，作为安全计算框架支持联合AI生态系统，该框架可以实现基于同态加密和多方计算的安全计算协议，在信贷风控、客户权益定价、监管科技等领域推出了相应的商用方案。微众银行与瑞士再保险公司达成合作，共同研究“联邦学习”在再保险领域的应用。在杨强教授担任标准制定工作组主席的带领下，微众银行发起“IEEE联邦学习标准项目”，成为国际上首个针对人工智能协同技术框架订立标准的项目，旨在共同制定联邦学习标准形式的具体形式和内容，达成行业合作，共同推动联邦学习在各行业领域的进一步发展。</p>
+<p>目前，联邦学习的国际标准化工作正在进行，随着 6月15日IEEE联邦学习基础架构与应用标准工作组的第二次会议在美国洛杉矶的召开。海内外13家来自科技、金融、教育、医疗等不同行业的知名研究机构及企业从多角度探讨联邦学习技术的应用案例，对联邦学习标准草案的制定提出建设性意见，该标准草案预计在一年内出台，意味着将为立法和监管提供更多技术依据。</p>
+<h4 id="国内联邦学习平台产业化建设">国内联邦学习平台产业化建设</h4>
+<p>联邦学习技术作为机器学习和数据结合的推动者，将推动各行业人工智能技术平台的应用发展，目前各企业已经开始在业务方面开展联邦学习在产业方面的技术平台建设工作。</p>
+<p>百度基于数据本地和云端隔离技术，采用安全数据融合以及多方联邦学习技术，推出“点石”数据安全融合及应用服务平台。提供安全数据集合、灵活建模、快速服务部署等服务，基于硬件隔离域、多方安全计算的技术能力，支持多场景的数据安全计算。“点石”利用安全方案解决数据打通难与应用成本高等问题。提供减少企业损失的风险识别，帮助企业有效识别在信用卡、贷款、在线支付等场景中的违约、欺诈等潜在风险，帮助企业对销售线索进行甄别与拓展，优化企业营销策略。“点石”的联邦学习应用场景主要是风险识别和营销分析。该平台与清华大学达成合作，利用联邦学习对接政府客户，帮助智慧城市建设。在风控模型建立方面，与狮桥公司合作，协同客户本地训练，结合大数据联合建模平台进行数据融合与分析建模。</p>
+<p>金融应用领域方面，平安集团的高科技内核——平安科技公司正在研发建立全球首个面向金融行业的联邦学习平台“蜂巢”。平安科技利用联邦学习技术，设计面向数据强监管的金融业多态多任务学习模型。“蜂巢”能够应用于多方信息的安全协作计算，满足银行和金融机构的风险评估、反洗钱、投顾、投研、信贷、保险和监管等多场景应用需求。减少人力成本和打通数据的成本，提高数据使用在机器学习过程中的转化率。平安科技将推动学界和工业界的积极探索，携手金融行业共同建立“联邦学习+互联网+监督”的联邦大数据平台，打破金融行业孤岛，联合各企业以及政府机构，进一步推动联邦学习在金融产业的快速发展。</p>
+<h4 id="联邦学习与物联网的融合">联邦学习与物联网的融合</h4>
+<p>物联网（IoT）生态环境中，联邦学习可以用于人工智能模型的分散训练。目前国内多家企业正在致力于研发联邦学习在物联网领域的应用解决方案。</p>
+<p>在通信分配应用方面，华为数字算法实验室利用联邦学习原理解决车联网中可靠低延迟通信的联合功率和资源分配问题，在概率排队延迟方面最小化车辆用户的网络功耗。利用联邦学习技术，华为数字算法实验室提出了一种分布式学习机制，车辆用户在道路单位的帮助下能够在本地学习网络范围队列，而不实时共享队列长度估计尾部分布。这种方法能高精度判断学习网络中的车联网队列分布，减少车载队列长度，优化资源配置。</p>
+<p>联想在去中心化人工智能和联邦学习的实际应用场景上，专注与硬件技术的结合，从各种来源聚合生成本地模型并允许物联网相互学习。每个边缘设备的数据独立用于学习创建本地模型。本地模型聚合将中央服务器转换为全局模型，再分发返回边缘设备，令所有边缘设备都可以从收集和处理的信息中受益，在不同场景下，利用联邦学习使物联网设备或传感器能够相互学习。联想正在与波兰云数据解决方案公司ByteLAKE合作，开展联邦学习和边缘计算环境系统构建。</p>
+<h4 id="对多方安全计算的积极探索">对多方安全计算的积极探索</h4>
+<p>在数据隐私保护的研究应用方面，基于多方安全计算技术，腾讯开展AI创新实践，推出“腾讯云数盾”。数盾以数据安全治理为核心,构建了可用于外部攻击防护、数据交换保护、内部防泄露等全流程的数据安全保护方案,用于帮助企业数据安全建设。数盾通过使用匿名化、差分隐私、安全多方计算架构等方式,在数据使用安全的基础上,平衡隐私保护与数据挖掘价值，符合对于数据使用和共享环境中的合规需求。</p>
+<p>阿里巴巴于四年前开始研究共享学习技术，研发蚂蚁金服共享学习平台，主要思想和联邦学习相同，基于数据安全和隐私保护，在多个参与方之间通过共享加密数据或加密机制下的参数交换与优化，进行机器学习，作为虚拟的共享模型的产品平台。蚂蚁金服共享学习平台本着数据共享建模方案不泄露用户隐私且符合数据安全保护的原则实现了数据的多方协同和授权共享，得到更准确高效的模型和决策，进一步释放数据价值。</p>
+<h3 id="联邦学习的未来">联邦学习的未来</h3>
+<p>对想要进行联合机器学习的各参与方，联邦学习具有保护隐私和多方本地数据安全的极大优势。避免集中式存储数据，安全合规地从多源不互通的数据中创造新的价值，充分利用各方数据资源，优化机器学习训练结果，学习参与方可以在联合形成协同合作的联邦大数据环境，形成联邦学习生态。联邦学习生态可以视为一个多种数据来源合作产生的，基于联邦学习原理协同规范的，用于联邦学习过程的无共享多方数据集群环境。用户、方案提供商、服务商、运营商以及生态链上游厂商融入到一个大环境，提供优化服务，真正达到联邦学习的资源融合作用。对金融、互联网、通信、零售、交通运输、工业生产等行业提供计算服务支持。我们可以从以下四方面窥探联邦学习的未来。</p>
+<p><strong>丰富的数据资源是联邦学习最大的金矿</strong>。原本分散在各规模企业的数据，通过联邦学习生态达成，可以发挥其自身作用，有了更好的用武之地。例如在精准营销方面，通过机器学习建模，把顾客群体细分，对每个群体，量体裁衣地采取相应对策。利用整合各方有用资源，构造更好的机器学习效果，以此产生利益价值。利用“联邦学习+人工智能”真正的赋能大数据并反哺个人和企业业务，用数据和科学提升业务效益。</p>
+<p>**打破传统企业机构的数据边界，利用联邦学习提升智能化效果。**改变过去商务智能和政府仅仅依靠机构内部数据的局面。协同各企业机构，达成优化合作，降低各机构间的交易摩擦成本和数据风险，提升机器学习的准确性和更新的及时性。在智慧城市、智慧医疗、智慧金融、企业数据联盟等方面提出新的使用方向。</p>
+<p>**更了解市场，发现用户需求并将联邦学习产业应用落地。**从市场业务挖掘数据使用场景，找出联邦学习在市场环境中的使用场景及应用范围，结合目前个人和机构的使用需求，利用联邦学习环境，提供丰富的资源，强化机器学习效果，辅助加速各产业智能化。</p>
+<p>**达成各行业联手，共建全行业的联邦学习生态。**联邦学习的出现已经开始改变大数据在各行各业的应用方式，联邦大数据生态的构建也离不开学界和工业界的共同探索和推动，使用联邦学习技术的各方应当携手，联合制定数据联邦行业规范，促成多方联邦数据协议，达成标准化、协同化、规范化的联邦学习环境。</p>
+<p>在信息流通日益渗透到企业和个人的今天，联邦学习将逐渐成为金融、保险、投资、医疗等众多行业领域实现商业价值和隐私安全保护的最佳途径，其应用将在各行业全面展开，联邦学习的新纪元已经到来。</p>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://www.secrss.com/articles/12695">数据隐私保护新曙光：联邦学习的机遇、挑战与未来</a></p>
+<p><a href="https://aisp-1251170195.cos.ap-hongkong.myqcloud.com/wp-content/uploads/pdf/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%99%BD%E7%9A%AE%E4%B9%A6_v2.0.pdf">联邦学习白皮书_v2.0</a></p>
+<p><a href="https://github.com/tao-shen/Federated-Learning-FAQ">联邦学习FAQ</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建用于无人驾驶学习的TORCS环境]]></title>
+        <id>https://azha.fun/post/搭建用于无人驾驶强化学习的环境/</id>
+        <link href="https://azha.fun/post/搭建用于无人驾驶强化学习的环境/">
+        </link>
+        <updated>2020-04-04T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文整理了在Ubuntu 16.04操作系统环境下，搭建适用于TORCS(The Open Racing Car Simulator)无人驾驶仿真平台的强化学习环境。包括Ubuntu 16.04更换NVIDIA显卡驱动、安装CUDA、cuDNN、TensorFlow GPU加速版本以及Gym-TORCS.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文整理了在Ubuntu 16.04操作系统环境下，搭建适用于TORCS(The Open Racing Car Simulator)无人驾驶仿真平台的强化学习环境。包括Ubuntu 16.04更换NVIDIA显卡驱动、安装CUDA、cuDNN、TensorFlow GPU加速版本以及Gym-TORCS.</p>
+<!--more-->
+<p>环境：Linux Ubuntu 16.04 LTS</p>
+<h3 id="安装nvidia驱动">安装NVIDIA驱动</h3>
+<h4 id="下载驱动程序">下载驱动程序</h4>
+<p>在<a href="http://www.nvidia.cn/Download/index.aspx?lang=cn">英伟达官网下载链接</a>选择电脑显卡以及操作系统，下载合适的显卡驱动文件。</p>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E35/E35_02.png" alt="" loading="lazy"></figure>
+<h4 id="禁用nouveau第三方驱动">禁用nouveau第三方驱动</h4>
+<p>i. 打开编辑配置文件： <code>sudo gedit /etc/modprobe.d/blacklist.conf</code></p>
+<p>ii. 在最后一行添加：<code>blacklist nouveau</code></p>
+<p>iii. 改好后执行命令：<code>sudo update-initramfs -u</code></p>
+<p>iv. 重启使之生效：<code>reboot</code></p>
+<h3 id="安装驱动">安装驱动</h3>
+<p>重启后按Ctrl+Alt+F1 进入命令行界面</p>
+<p>执行命令：<code>lsmod | grep nouveau</code></p>
+<p>禁用X服务：<code>sudo /etc/init.d/lightdm stop </code>（或者：<code>sudo service lightdm stop</code>）</p>
+<p>给驱动run文件赋予可执行权限：<code>sudo chmod a+x NVIDIA-Linux-x86_64-440.64.run</code>(此处文件名称根据下载的驱动文件名填写）</p>
+<p>安装：<code>sudo ./NVIDIA-Linux-x86_64-440.64.run -no-opengl-files</code></p>
+<blockquote>
+<p>–no-opengl-files 只安装驱动文件，不安装OpenGL文件。这个参数最重要<br>
+–no-x-check 安装驱动时不检查X服务<br>
+–no-nouveau-check 安装驱动时不检查nouveau<br>
+后面两个参数可不加。</p>
+</blockquote>
+<p>开启X服务：<code>sudo /etc/init.d/lightdm start</code>（或者：<code>sudo service lightdm start</code>）</p>
+<p>重启，没有问题，输入命令：<code>nvidia-smi</code></p>
+<p>如果出现了驱动版本就表示安装成功了。</p>
+<h2 id="安装cudatoolkit-90">安装CUDAToolkit 9.0</h2>
+<p><a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;target_distro=Ubuntu&amp;target_version=1604&amp;target_type=deblocal">CUDA9.0下载地址</a></p>
+<figure data-type="image" tabindex="2"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E35/E35_03.png" alt="" loading="lazy"></figure>
+<p>打开终端  <strong>cd 进入存放CUDA安装包的文件夹中</strong>，依次输入下面的命令：</p>
+<pre><code class="language-bash">sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
+sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+sudo apt update
+sudo apt install cuda
+</code></pre>
+<p>CUDA完成安装之后，还需要添加环境变量，打开终端，输入下面的命令：</p>
+<pre><code class="language-bash">export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
+# 如果是64位系统，输入：
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# 如果是32位系统，输入：
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+</code></pre>
+<p>上述过程完成了整个的CUDA9.0的安装</p>
+<h2 id="安装cudnn-v70">安装cuDNN v7.0</h2>
+<p><a href="https://developer.nvidia.com/rdp/cudnn-download">cuDNN v7.0下载地址</a></p>
+<figure data-type="image" tabindex="3"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E35/E35_04.png" alt="" loading="lazy"></figure>
+<p>勾选I Agree To the Terms of the cuDNN Software License Agreement，一定要选择上<strong>适用于CUDA 9.0的正确版本</strong>！！！！</p>
+<p>打开终端  <strong>cd 进入存放cuDNN安装包的文件夹中</strong>，输入以下命令：</p>
+<p><code> sudo dpkg -i libcudnn7_7.6.5.32-1+cuda9.0_amd64.deb</code></p>
+<p><strong>注意</strong>，上述命令中的可能会由于cudnn版本的细微差异而不同，请根据自己下载的cuDNN版本修改命令。之后等待完成cuDNN的安装。</p>
+<h2 id="安装tensorflow-gpu版本">安装Tensorflow-GPU版本</h2>
+<p>GPU相比于CPU，在运算速度上有很大的优势，这也是本文推荐安装GPU版本的原因。</p>
+<p>Tensorflow总共有4中安装方式，在这里，我们使用Google官方推荐的安装方式：Virtualenv，创建一个虚拟Python开发环境。</p>
+<h3 id="安装pip和virtualenv">安装pip和Virtualenv</h3>
+<p>由于Python 2.7版本已于2020年1月1日终止维护，这里推荐使用Python 3.x版本进行开发。</p>
+<p>打开终端<br>
+如果使用Python 2.7的版本，输入<code>sudo apt install python-pip python-dev python-virtualenv</code><br>
+如果使用Python 3.x的版本，输入<code>sudo apt install python3-pip python3-dev python-virtualenv</code></p>
+<h3 id="创造一个虚拟的python开发环境">创造一个虚拟的Python开发环境</h3>
+<p>第一步如果选择Python 2.7版本，终端输入：<code>virtualenv --system-site-packages ~/tensorflow</code><br>
+第一步如果选择Python 3.x版本，终端输入：<code>virtualenv --system-site-packages -p python3 ~/tensorflow</code><br>
+注意，~/tensorflow是自己选择的位置并创建的目录，可以自行选择其他的位置和命名。创建完成之后，会在用户文件夹目录下看到多出的tensorflow文件夹</p>
+<h3 id="激活虚拟环境">激活虚拟环境</h3>
+<p>打开终端输入：<code>source ~/tensorflow/bin/activate</code></p>
+<p>命令执行之后会在命令前出现  <strong>(tensorflow)</strong> 字样，代表虚拟环境已激活，接下来便可以在虚拟环境中进行操作。</p>
+<p>保证pip的版本不低于8.1，在虚拟环境中输入：<code>easy_install -U pip</code></p>
+<h3 id="安装tersorflow-gpu版本">安装tersorflow-gpu版本</h3>
+<p>Python 2.7版本：<code>pip install --upgrade tensorflow-gpu</code><br>
+Python 3.x版本：<code>python -m pip install --upgrade tensorflow-gpu</code><br>
+经过这一步骤之后，tensorflow就安装完成了。</p>
+<p>如果pip安装速度慢，可参考本博客之前的文章<a href="http://azha666.github.io/20120/04/02/Ubuntu%2016.04%20%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90%E5%90%88%E9%9B%86/">Ubuntu 16.04 更换安装源合集</a>，更换pip源。</p>
+<p>有些IDE 会自动检测tensorflow创建的虚拟环境，不必在终端中单独开启或者关闭，比如pycharm等。</p>
+<h2 id="安装gym-torcs">安装Gym-TORCS</h2>
+<h3 id="安装相关依赖包">安装相关依赖包</h3>
+<p>打开终端，输入命令</p>
+<pre><code class="language-bash">pip install opencv-python
+sudo apt install xautomation
+pip install numpy
+pip install gym
+</code></pre>
+<h3 id="安装gym-torcs-2">安装Gym-TORCS</h3>
+<p>下载<a href="https://github.com/ugo-nama-kun/gym_torcs">Gym-TORCS源码</a>.此处若git clone速度慢，可通过第三方下载软件下载源码zip包，或者参考本博客之前的文章<a href="http://azha666.github.io/2018/09/20/%E6%89%93%E7%A0%B4Git%20%E6%93%8D%E4%BD%9C%E7%9A%84%E9%80%9F%E5%BA%A6%E9%99%90%E5%88%B6/">打破Git 操作的速度限制</a>，为git操作添加网络代理。</p>
+<p>将gym_torcs/vtorcs-RL-color/src/modules/simu/simuv2/simu.cpp中第64行替换为</p>
+<p><code>if (isnan((float)(car-&gt;ctrl-&gt;gear)) || isinf(((float)(car-&gt;ctrl-&gt;gear)))) car-&gt;ctrl-&gt;gear = 0;</code></p>
+<p>即转换两个数据类型为float，否则，下一步make的时候可能会出现error，安装失败。（此处参考网上教程，为尝试过不修改文件的方法）</p>
+<p>打开终端，<strong>cd 到 gym_torcs/vtorcs-Rl-color目录</strong>，执行以下命令：</p>
+<pre><code class="language-bash">sudo apt-get install libglib2.0-dev  libgl1-mesa-dev libglu1-mesa-dev  freeglut3-dev  libplib-dev libopenal-dev libalut-dev libxi-dev libxmu-dev libxrender-dev  libxrandr-dev libpng12-dev 
+./configure
+make
+sudo make install
+sudo make datainstall
+torcs
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E35/E35_05.png" alt="" loading="lazy"></figure>
+<p>至此完成无人驾驶强化学习环境的搭建！</p>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://blog.csdn.net/u014797226/article/details/79626693">Ubuntu 16.04安装NVIDIA驱动</a></p>
+<p><a href="https://blog.csdn.net/qq_35976351/article/details/79325476">Ubuntu + CUDA9.0 + tensorflow-gpu 安装过程</a></p>
+<p><a href="https://www.jianshu.com/p/a3432c0e1ef2">使用Keras和DDPG玩赛车游戏（自动驾驶）</a></p>
+]]></content>
+    </entry>
+</feed>

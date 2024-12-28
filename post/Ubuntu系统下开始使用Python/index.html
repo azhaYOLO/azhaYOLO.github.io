@@ -1,0 +1,338 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Ubuntu系统下开始使用Python | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Ubuntu系统下开始使用Python
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2017-09-06 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/VnTUJV7dTK/" class="post-tags">
+                            # Linux
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/KxvZnhZmcAH/" class="post-tags">
+                            # Python
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>马上就要开始学习Python了，<br>
+但是在学习一门新的编程语言时，常会有无从下手的感觉，<br>
+本文旨在按照参考书《Python开发实战》填完所有的坑，为后来的学习者铺路。</p>
+<!--more-->
+<h2 id="准备">准备</h2>
+<p>系统：Linux Ubuntu Kylin（运行在Win10 VMWare上）<br>
+VMWare的使用可查阅相关资料，Linux的系统是开源的，可以自行官网下载，Kylin是Ubuntu的中国版代号，推荐使用原生版Ubuntu！<br>
+知识：Linux 终端指令使用的入门（如何打开终端、如何运行指令）</p>
+<h2 id="python环境搭建">Python环境搭建</h2>
+<p>Python /ˈpaɪθɑːn/, 是一种面向对象的解释型<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80">计算机程序设计语言</a>。</p>
+<p>Python具有丰富和强大的库。它常被昵称为胶水语言，能够把用其他语言制作的各种模块（尤其是C/C++很轻松地联结在一起）。常见的一种应用情形是，使用Python快速生成程序的原型（有时甚至是程序的最终界面），然后对其中有特别要求的部分，用更合适的语言改写，比如3D游戏中的图形渲染模块，性能要求特别高，就可以用C/C++重写，而后封装为Python可以调用的扩展类库。需要注意的是在您使用扩展类库时可能需要考虑平台问题，某些可能不提供跨平台的实现。</p>
+<p>2017年7月20日，IEEE发布2017年编程语言排行榜：Python高居首位。</p>
+<p>（资料引自<a href="https://baike.baidu.com/item/Python">百度百科</a>)</p>
+<h3 id="安装apt软件包">安装apt软件包</h3>
+<p>apt是Advanced Packaging Tool的缩写，是一款强大的包管理工具，也可以称作机制。</p>
+<pre><code># apt软件包的更新与升级
+$ sudo apt-get -y update
+$ sudo apt-get -y upgrade
+$ sudo apt-get -y install build-essential
+$ sudo apt-get -y install libsqlite3-dev
+$ sudo apt-get -y install libreadline6-dev
+$ sudo apt-get -y install libgdbm-dev
+$ sudo apt-get -y install zlib1g-dev
+$ sudo apt-get -y install libbz2-dev
+$ sudo apt-get -y install sqlite3
+$ sudo apt-get -y install tk-dev
+$ sudo apt-get -y install zip
+</code></pre>
+<p>-y的作用是告知安装程序，安装过程遇到的Y/n问题默认回答Yes。<br>
+可自行百度每条安装指令的作用~</p>
+<pre><code># Python相关包的安装
+
+# 安装python-dev
+$ sudo apt-get -y install python-dev
+
+# 安装Distribute
+$ sudo chmod -R 0775 /usr/local
+$ sudo chgrp -R bpbook /usr/local
+$ wget http://python-distribute.org/distribute_setup.py
+$ sudo python distribute_setup.py
+</code></pre>
+<p>若安装distribute遇到问题解决方案：先安装pip再执行<br>
+<code>sudo pip install -U distribute</code>（pip的安装在后文介绍）<br>
+Distribute是支持Python模块构建与导入的工具包。</p>
+<pre><code># Python版本的确认
+$ python -V
+</code></pre>
+<p>至此，Python安装完成。</p>
+<h3 id="pypi的安装">PyPI的安装</h3>
+<p>PyPI /P I Pi/(Python Package Index)是python官方的第三方库的仓库，任何人都可以下载第三方库或上传自己开发的库到PyPI。PyPI推荐使用pip包管理器来下载第三方库。</p>
+<p>从PyPI安装功能包和模块时所使用的命令有easy_instal和pip，下文以pip为例进行介绍。</p>
+<pre><code># pip命令的安装
+$ wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+$ sudo python get-pip.py
+</code></pre>
+<pre><code># pip版本的确认
+$ pip --version
+</code></pre>
+<p>安装好的包会放在/usr/local/lib/Pyhton2.7目录下。<br>
+至此PyPI的安装结束。</p>
+<h3 id="安装virtualenv">安装virtualenv</h3>
+<p>virtualenv是将Python的实际运行环境进行虚拟的工具包。如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，virtualenv就是用来为一个应用创建一套“隔离”的Python虚拟运行环境。</p>
+<pre><code># 安装virtualenv
+$ pip install virtualenv
+</code></pre>
+<p>若安装virtualenv遇到问题：可执行<br>
+<code>sudo pip install virtualenv</code></p>
+<pre><code># 查看virtualenv操作信息
+$ virtualenv --help
+</code></pre>
+<h3 id="virtualenv的使用">VIRTUALENV的使用</h3>
+<pre><code># 使用pip freeze确认
+$ pip freeze
+</code></pre>
+<p>pip freeze用来确认已经安装好的所有包的版本信息。</p>
+<pre><code># 使用virtualenv建立虚拟运行环境
+$ export VIRTUALENV_USE_DISTRIBUTE=true
+$ mkdir ~/work
+$ cd ~/work
+$ virtualenv env
+</code></pre>
+<p>执行上述命令后，新建一个work目录，并在work目录下建立一个新的env目录，这就是虚拟环境目录。</p>
+<p>virtualenv默认不使用目录下的site-packages包，若需要使用可执行<br>
+<code>virtualenv --system-site-packages env</code></p>
+<pre><code># 虚拟运行环境激活
+$ source env/bin/activate
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E06/E06_snipaste_env.png" alt="出现（env）即为激活成功" loading="lazy"></figure>
+<pre><code># 检查安装好的包版本信息
+(env) $ pip freeze
+
+# 退出虚拟运行环境
+(env) $ deactivate
+</code></pre>
+<p>若不再需要该虚拟环境是，可以直接使用rm命令将对应的目录删除。</p>
+<h4 id="virtualewrapper">VIRTUALEWRAPPER</h4>
+<p>virtualwrapper是一种比virtualenv更容易使用的工具。<br>
+无需每次使用source命令激活虚拟运行环境，而是通过对virtualenv的二次封装，解决上述问题。</p>
+<pre><code># virtualwrapper的安装
+$ pip install virtualenvwrapper
+</code></pre>
+<pre><code># 通过文本编辑器修改.bashrc
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+ export WORKON_HOME=$HOME/.virtualenvs
+ source /usr/local/bin/virtualenvwrapper.sh
+fi
+</code></pre>
+<pre><code># 再次读入.bashrc
+$ source ~/.bashrc
+
+# 确认mkvirtualenv的帮助信息
+$ mkvirtualenv --help
+
+# 建立虚拟运行环境
+$ mkvirtualenv newenv
+
+# 确认虚拟运行环境
+$ ls -la $HOME/.virtualenvs
+
+# 进入虚拟运行环境
+$ workon newenv
+
+ # 浏览虚拟运行环境
+$ workon
+
+# 删除虚拟运行环境
+$ rmvirtualenv newenv
+</code></pre>
+<h2 id="使用不同版本的python">使用不同版本的Python</h2>
+<p>因为Python3.0还未广泛受到使用，大多数应用和平台还是支持Python2.7，所以这里不做介绍啦。</p>
+<p>如遇到问题请先尝试<code>sudo</code>授权，若问题未解决，可自己探索~<br>
+<a href="https://www.baidu.com/">百度</a> <a href="https://www.google.com.hk/">谷歌</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">廖雪峰的官方网站</a><br>
+<a href="https://book.douban.com/subject/25880219/">《Python开发实战》</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/2017暑期小学期—JavaWeb开发/" class="post-title gt-a-link">
+                    2017暑期小学期—JavaWeb开发
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

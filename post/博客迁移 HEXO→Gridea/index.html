@@ -1,0 +1,245 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>博客迁移 HEXO→Gridea | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    博客迁移 HEXO→Gridea
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-10-26 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/k1qrJrv-nW/" class="post-tags">
+                            # 转载
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/mnm53sfEyki/" class="post-tags">
+                            # HEXO
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/NOICdnsk1/" class="post-tags">
+                            # Gridea
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>无意间在我的订阅收藏里看到一篇关于轻量化博客应用的文章，仔细阅读之后狂喜——这不就是我想要的轻量化博客写作客户端嘛！于是花费了几个小时完成了博客从HEXO到Gridea的迁移工作</p>
+<!--more-->
+<p>Gridea 是一个静态博客写作客户端，帮助你更容易地构建并管理博客或任何静态站点。<br>
+最大的优点就是让你能够像写微博一样轻松地写博客，而不需要太多的顾及代码部分的内容。</p>
+<p><strong>本文转载自「Gridea」。<a href="https://gridea.dev/">点此了解更多</a>。</strong></p>
+<h2 id="安装">安装</h2>
+<ol>
+<li>安装 <a href="https://gridea.dev/">Gridea</a></li>
+</ol>
+<h2 id="写作">写作</h2>
+<p>相信你自己可以搞得定哦，加油写作啦！</p>
+<h2 id="发布">发布</h2>
+<blockquote>
+<p>Gridea 提供了将博客部署到 GitHub Pages、Coding Pages 和通过 SFTP 的方式上传到自己的服务器的功能。下面将以 GitHub 为例，来讲一下部署流程。</p>
+</blockquote>
+<ol>
+<li><strong>创建 GitHub 账号，并创建一个仓库 Token</strong>。点击<a href="https://github.com/">GitHub</a>，进行注册。登录 GitHub 之后，点击<a href="https://github.com/settings/tokens/new">这里</a>创建一个 Token，<strong>勾选上 repo 的相关权限即可</strong>。生成之后记得把 Token 复制到你的本地，因为一旦关闭网页将不能再看到它。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_02.png" alt="img" loading="lazy"><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_03.png" alt="img" loading="lazy"></li>
+<li><strong>创建仓库，存放构建后的网站文件</strong>。创建一个公开仓库，名为<strong>用户名.github.io</strong>。（将用户名替换为你的 GitHub 用户名）<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_04.png" alt="img" loading="lazy"></li>
+<li><strong>进入 Gridea 进行远程设置</strong>。按照下图的示例进行设置，然后点击「检测远程链接」，进行配置检查。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E37/E37_05.png" alt="img" loading="lazy"></li>
+<li><strong>同步</strong>。点击 Gridea 中的 同步按钮即可。初次部署等待几分钟之后就可以去浏览器访问了，默认地址为你在第 3 步所填写的域名。</li>
+</ol>
+<p>以上，就完成一个静态博客的搭建了，期待你的每一次落笔成文。</p>
+<p>Enjoy~</p>
+<blockquote>
+<p>附：社区小伙伴录制的 Gridea 教程</p>
+</blockquote>
+<p><a href="https://www.bilibili.com/video/av54010923">Gridea快速上手-1-前言</a><br>
+<a href="https://www.bilibili.com/video/av54011033">Gridea快速上手-3-Gridea与Github的配置</a><br>
+<a href="https://www.bilibili.com/video/BV1dV41167HE">Gridea静态博客最新教程（Coding的部署）</a><br>
+<a href="https://www.bilibili.com/video/av69627579/">10分钟搭建博客——Gridea</a></p>
+<h2 id="如何将-hexo-文章导入-gridea">如何将 Hexo 文章导入 Gridea</h2>
+<p>十分简单！目前，你可以将 markdown 文章手动复制到源文件夹中的 posts 文件夹中 （默认是<code>~/Documents/Gridea/posts</code>），然后打开应用检查文章内容。若文章中有图片，则需额外编辑即可。本次迁移工作最大的工作量就是在封面图的重新匹配上，以及对博客的个性化上。</p>
+<p>提示：从 <strong>Hexo</strong> 导入的文章将抛弃 分类（Categories）信息，因为在 <strong>Gridea</strong> 中只有 标签（Tag）的概念。</p>
+<p><strong>本文转载自「Gridea」。<a href="https://gridea.dev/">点此了解更多</a>。</strong></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/浅谈联邦学习/" class="post-title gt-a-link">
+                    浅谈联邦学习
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

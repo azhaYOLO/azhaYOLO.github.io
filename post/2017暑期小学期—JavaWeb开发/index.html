@@ -1,0 +1,234 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>2017暑期小学期—JavaWeb开发 | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    2017暑期小学期—JavaWeb开发
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2017-09-04 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/JmFhLbVkO1/" class="post-tags">
+                            # Web 开发
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/zI5ANADkPzz/" class="post-tags">
+                            # Java
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>2017年8月，马上就是大三狗的我终于迎来了小学期，题目是”能力规范文档管理系统”，实现技术是JavaWeb，要求按照软件工程的流程进行迭代开发，小学期总共分为四个阶段，分别对五个需求进行实现和改善系统，要求有需求文档和后期总结。</p>
+<!--more-->
+<h3 id="产品定位">产品定位</h3>
+<p>能力规范文稿管理系统是一个在线的对已成功注册的写者所提交的提案进行的审核及发布的平台，在写者发布提案后其余写者还可参与进行附议、反对及评论等互动。</p>
+<h3 id="准备阶段">准备阶段</h3>
+<p>需求文档的撰写，需要安装Tomcat服务器(Server)，Mysql数据库(Database)，这次实践采用的是WampServer集成软件。可以用PHPadmin管理数据库，管理起系统比较方便，相似的软件有xxamp等。编译器用的是老师要求的JetBrain的IntelliJ IDEA，是一款十足好用的开发工具，用过就知道！</p>
+<h3 id="第一阶段">第一阶段</h3>
+<ul>
+<li>需求一:登录及注册功能</li>
+<li>需求二:写者功能</li>
+</ul>
+<p>登录及注册功能的实现采用了数据库的存取进行比较来进行用户的登录权限管理。</p>
+<p>写者功能包括了提案编制，提案查询，规范编制，规范查询，信息维护，提案编制，规范编制主要是提取表单里的<code>&lt;textarea&gt;</code>区域内容提交给数据库，提案查询，规范查询主要采取了模糊搜索，通过Java实现，信息维护是通过与数据库的信息交互来实现的。</p>
+<h3 id="第二阶段">第二阶段</h3>
+<ul>
+<li>需求三:管理者功能</li>
+<li>需求四:注销功能</li>
+</ul>
+<p>管理者功能包括了身份管理，提案审批，对管理员的管理。身份管理的实现通过不同的按钮可查看详情，同意或拒绝，跳转到相应的jsp文件，同意的情况跳转到agree.jsp文件在数据库中用户信息feature置为1作为成功标志，拒绝的情况跳转到disagree.jsp文件在数据库中输出该则用户信息。提案审批的实现比较取巧，系统数据库设置三个级别的管理员，分别负责推荐，备案，立案，在不同阶段的操作就是将proposal表里相应的记录的feature的值+1来代表相应进行到的阶段(这里缺少个字义转换为中文)对管理员的管理需要设置一个超级管理账号，主要也是通过不同的jsp文件来对数据库进行操作。</p>
+<p>注销功能的实现也比较取巧，直接关闭session回话，跳转到登录页面，并提示”注销成功”，节省了不少功能.</p>
+<h3 id="第三阶段">第三阶段</h3>
+<ul>
+<li>需求五:会员推荐功能</li>
+<li>前端界面优化</li>
+</ul>
+<p>会员推荐功能是将注册会员填写的推荐人id与数据库进行比较，将通过推荐的会员数据存入推荐表中，管理员通过推荐时，将referrerlist表中的数据删除，并更新userinfo表.<br>
+前端界面优化就是完全靠简单的html+CSS实现技术再加上纯人力审美判断进行优化，后期效果还是十分的绚丽!</p>
+<h3 id="后期复盘">后期复盘</h3>
+<p>不再一一赘述大伙的总结了，主要的实现是通过一个个的jsp(Java Server Page)文件组成，jsp文件的优势就是可在html文件里插入Java语句。JSP具备了Java技术的简单易用，完全的面向对象，具有平台无关性且安全可靠，主要面向因特网的所有特点。这个系统的亮点有过滤用户(采用正则表达式，拦截未登录的用户)，分页(达到页面简洁的效果，搜索(模糊搜索，克服了中文搜索遇到的问题)，打印和保存(两个很鸡肋很狗血的功能，一句语句完成，有心的话可以在源码里面翻翻~)</p>
+<p>这次小学期，我们组的大腿们太多了，我主要参与了需求文档(参照IEEE标准)和利用假期学到的html和CSS知识进行前端优化，小有收获吧!</p>
+<p>系统的源码和需求文档等详见<a href="https://github.com/sse2017/project">Github</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/关于莆田的美食记忆/" class="post-title gt-a-link">
+                    关于莆田的美食记忆
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

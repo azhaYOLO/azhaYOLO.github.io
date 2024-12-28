@@ -1,0 +1,252 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>浅谈联邦学习 | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    浅谈联邦学习
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-10-16 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/0T7KR3zG8/" class="post-tags">
+                            # 联邦学习
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/RJ84RekhV-/" class="post-tags">
+                            # 机器学习
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/gnOIcjRTKc/" class="post-tags">
+                            # 数据安全
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在人工智能领域，传统的数据处理模式往往是一方收集数据，再转移到另一方进行处理、清洗并建模，最后把模型卖给第三方。但随着法规完善和监控愈加严格，如果数据离开收集方或者用户不清楚模型的具体用途，运营者都可能会触犯法律。数据是以孤岛的形式存在的，解决孤岛的直接方案就是把数据整合到一方进行处理。但是，现在这样做很可能是违法的，因为法律不允许运营者粗暴地进行数据聚合。如何合法地解决数据孤岛问题应该引起人工智能学者和从业者的深思，因为大数据面临的这个困境很可能就是导致人工智能下一个冬天的导火线。</p>
+<!--more-->
+<h2 id="人工智能时代浮现的问题">人工智能时代浮现的问题</h2>
+<h3 id="数据安全问题">数据安全问题</h3>
+<p>随着信息技术的快速发展，硬件设备和数据的广泛利用为人工智能发展提供了广阔的应用空间和广泛的应用条件。但从2014年以来，数据泄漏问题开始得到公众关注，每年都有大量数据隐私泄露事件发生，数据使用的合法性和使用界限开始成为各行业关心的问题。2018年5月25日，欧盟正式生效《通用数据保护条例》（General Data Protection Regulation，GDPR）。中国于2019年4月正式发布《互联网个人信息安全保护指南》、2017年起实施《中华人民共和国网络安全法》和《中华人民共和国民法总则》。法律条例对于人工智能传统的数据处理建模模式形成了极大挑战。在一个需要互联共享的信息共享环境下，如何在符合法律法规的用户数据隐私安全条件下，进行多方数据资源的利用，成为了各企业利用数据时中面临的重要问题。</p>
+<h3 id="数据孤岛问题">数据孤岛问题</h3>
+<p>人工智能领域，往往需要足量数据进行机器学习来产生良好的建模效果。”能否掌握足量优质的数据，决定了人工智能训练效果的优劣。在实际工业环境中，仅仅一家企业难以只利用自身数据推测用户多元化多平台的消费习惯。为了更精准的做出决策，需要充分利用信息资源。市场开始要求大规模数据平台使用多种情况下的最佳训练效果。然而许多企业训练方拥有的数据量不足，规模与质量不完备。数据来源不够，导致机器学习系统效果不理想。不同的网站、研究者、广告商和商业机构想要将彼此的数据汇总或者统一整理进行训练，传统的处理模式之一是将不同源数据整合，形成聚合数据库，虽然聚合数据库能实现对多个独立的数据库进行相互操作，但过程中存在各单元数据库的交互过程，面临着交互过程中的安全风险，无法保证隐私安全的后果。另外，实际情况下，数据源往往分布在企业和个人，相互独立隔阂，形成了一个个阻碍技术发展的“数据孤岛”。</p>
+<h2 id="联邦学习">联邦学习</h2>
+<p>联邦学习的提出是满足隐私保护和信息安全、“数据孤岛问题”的解决方案。联邦学习允许从跨数据所有者分布的数据中构建集合模型，提供了跨企业的数据使用方式和模型构建蓝图，适用于B2B和B2C等业务，可被广泛应用于各种领域，实现各个企业的自有数据不出本地，只通过加密机制下的参数交换，不违反数据隐私法规地建立优化机器学习模型。在保护数据隐私安全，合法合规要求前提下，达成机器学习效果的强化，将人工智能重点从以AI基础算法为中心转移到以保障安全隐私的大数据架构为中心。</p>
+<p>2016年，Google AI研究人员首次提出用于训练深度学习网络的联邦学习。谷歌尝试建立数百万安卓设备之间的联邦模型，用于移动设备分散数据训练，解决隐私保护问题。2019年2月，Google发布实现了全球首个产品级的超大规模移动端分布式机器学习系统，能够在数千万部手机的安卓键盘上运行联邦学习算法，谷歌的研究主要侧重于在移动终端上运行的联合平均算法。</p>
+<p>多个数据拥有方想要共同训练模型，传统做法是将数据整合到一方进行训练，但是这样无法保证数据隐私和传输过程的安全性。相对于以往的分布式机器学习方式，联邦学习具有以下特征：数据不脱离本地；参与者利用自身拥有的数据训练全局模型；每个参与方都参与学习过程；模型损失可控；训练过程中考虑隐私和安全。参与各方能够在不披露底层数据和底层数据的加密形态的前提下共建模型，使联邦学习成为未来安全多方机器学习的新曙光。</p>
+<h3 id="联邦学习的分类">联邦学习的分类</h3>
+<h4 id="从联合方式分类">从联合方式分类</h4>
+<p>联合方式上，可以将联邦学习分为单方和多方两种方式。单方联邦学习是指从一个实体进行分布式内容抓取和系统管理。模型以联合的方式训练在所有客户端设备中具有相同结构的数据上。大多数情况下每个数据点对于设备或用户唯一。例如，应用程序通过单方联邦学习为个人用户推荐音乐的推荐引擎。多方联邦学习则需要两个或多个组织或特许经营商组成联盟。在其各自的数据集上训练共享模型。例如，多家银行可以培训一种通用的强大欺诈检测模型，而无需相互分享敏感的客户数据。</p>
+<h4 id="从用户和用户特征结构分类">从用户和用户特征结构分类</h4>
+<p>参与各方的数据结构和参数通常相似但不必相同，根据不同的数据的特征分布形式，如同数据库原理中的数据特征分布状态，联邦学习又分为三种不同处理方式：横向、纵向和迁移。参与方们的数据集具有高度重叠的特征维度，样本重叠较小时，称为横向联邦学习。参与方们的数据集具有高度重叠的样本纬度，特征维度重叠较小时，使用方法称为纵向联邦学习。如果参与方们数据集在样本和特征维度上都没有足够的重叠，则使用联邦迁移学习。</p>
+<h3 id="隐私保护下的技术工具">隐私保护下的技术工具</h3>
+<p>参与方们在参与联邦学习的过程中需要使用工具来进行数据的隐私保护。联邦学习的主要的工具包括安全多方计算，同态加密，私密共享和差分隐私。参与方们可以利用安全多方计算保证信息层面的数据安全。安全多方计算成本较高，为降低数据传输成本，参与方们可能需要在降低对数据安全的要求来提高训练的效率。同态加密能够对所有数据进行加密处理，参与方们接收到的是密文，使攻击者无法推理出原始数据信息，保障数据层面的安全。在实际应用中，为了提高计算效率，参与方们一般采用半同态加密，半同态加密可以使用加法和乘法进行同态加密。差分隐私可以用于参与方本地数据信息安全的保护，通过在参与方各自的原始数据上不断加噪音来减弱任意一方数据对于整体数据的影响。其缺点在于牺牲训练效果，过多的噪音会降低模型训练的效果，参与方们在使用差分隐私时需要在数据安全和准确度上进行取舍。</p>
+<h3 id="联邦学习的现状和发展">联邦学习的现状和发展</h3>
+<h4 id="联邦学习的框架和标准化制定">联邦学习的框架和标准化制定</h4>
+<p>联邦学习的技术框架建设方面。谷歌首先提出开源的离散数据联邦学习应用框架TensorFlow Federated (TFF)。TensorFlow Federated主要支持利用如今数量众多的移动智能终端设备和边缘端计算设备的计算能力，保证数据不离开本地的同时训练本地机器学习模型，通过Google开发的Federated Averaging 算法，即使在较差的通信环境下，也能实现保密、高效、高质量的模型汇总和迭代流程，且移动端和边缘端用户体验上不做任何牺牲和妥协。目前Google已经将联邦学习应用在移动设备键盘输入预测上。</p>
+<p>在学术研究与行业应用上，腾讯发起的中国首家互联网银行——微众银行正在积极探索。在国际人工智能专家、微众银行首席人工智能官杨强教授带领下的AI 团队开源了首个联邦学习“FATE（FederatedAI Technology Enabler)” 工业框架，作为安全计算框架支持联合AI生态系统，该框架可以实现基于同态加密和多方计算的安全计算协议，在信贷风控、客户权益定价、监管科技等领域推出了相应的商用方案。微众银行与瑞士再保险公司达成合作，共同研究“联邦学习”在再保险领域的应用。在杨强教授担任标准制定工作组主席的带领下，微众银行发起“IEEE联邦学习标准项目”，成为国际上首个针对人工智能协同技术框架订立标准的项目，旨在共同制定联邦学习标准形式的具体形式和内容，达成行业合作，共同推动联邦学习在各行业领域的进一步发展。</p>
+<p>目前，联邦学习的国际标准化工作正在进行，随着 6月15日IEEE联邦学习基础架构与应用标准工作组的第二次会议在美国洛杉矶的召开。海内外13家来自科技、金融、教育、医疗等不同行业的知名研究机构及企业从多角度探讨联邦学习技术的应用案例，对联邦学习标准草案的制定提出建设性意见，该标准草案预计在一年内出台，意味着将为立法和监管提供更多技术依据。</p>
+<h4 id="国内联邦学习平台产业化建设">国内联邦学习平台产业化建设</h4>
+<p>联邦学习技术作为机器学习和数据结合的推动者，将推动各行业人工智能技术平台的应用发展，目前各企业已经开始在业务方面开展联邦学习在产业方面的技术平台建设工作。</p>
+<p>百度基于数据本地和云端隔离技术，采用安全数据融合以及多方联邦学习技术，推出“点石”数据安全融合及应用服务平台。提供安全数据集合、灵活建模、快速服务部署等服务，基于硬件隔离域、多方安全计算的技术能力，支持多场景的数据安全计算。“点石”利用安全方案解决数据打通难与应用成本高等问题。提供减少企业损失的风险识别，帮助企业有效识别在信用卡、贷款、在线支付等场景中的违约、欺诈等潜在风险，帮助企业对销售线索进行甄别与拓展，优化企业营销策略。“点石”的联邦学习应用场景主要是风险识别和营销分析。该平台与清华大学达成合作，利用联邦学习对接政府客户，帮助智慧城市建设。在风控模型建立方面，与狮桥公司合作，协同客户本地训练，结合大数据联合建模平台进行数据融合与分析建模。</p>
+<p>金融应用领域方面，平安集团的高科技内核——平安科技公司正在研发建立全球首个面向金融行业的联邦学习平台“蜂巢”。平安科技利用联邦学习技术，设计面向数据强监管的金融业多态多任务学习模型。“蜂巢”能够应用于多方信息的安全协作计算，满足银行和金融机构的风险评估、反洗钱、投顾、投研、信贷、保险和监管等多场景应用需求。减少人力成本和打通数据的成本，提高数据使用在机器学习过程中的转化率。平安科技将推动学界和工业界的积极探索，携手金融行业共同建立“联邦学习+互联网+监督”的联邦大数据平台，打破金融行业孤岛，联合各企业以及政府机构，进一步推动联邦学习在金融产业的快速发展。</p>
+<h4 id="联邦学习与物联网的融合">联邦学习与物联网的融合</h4>
+<p>物联网（IoT）生态环境中，联邦学习可以用于人工智能模型的分散训练。目前国内多家企业正在致力于研发联邦学习在物联网领域的应用解决方案。</p>
+<p>在通信分配应用方面，华为数字算法实验室利用联邦学习原理解决车联网中可靠低延迟通信的联合功率和资源分配问题，在概率排队延迟方面最小化车辆用户的网络功耗。利用联邦学习技术，华为数字算法实验室提出了一种分布式学习机制，车辆用户在道路单位的帮助下能够在本地学习网络范围队列，而不实时共享队列长度估计尾部分布。这种方法能高精度判断学习网络中的车联网队列分布，减少车载队列长度，优化资源配置。</p>
+<p>联想在去中心化人工智能和联邦学习的实际应用场景上，专注与硬件技术的结合，从各种来源聚合生成本地模型并允许物联网相互学习。每个边缘设备的数据独立用于学习创建本地模型。本地模型聚合将中央服务器转换为全局模型，再分发返回边缘设备，令所有边缘设备都可以从收集和处理的信息中受益，在不同场景下，利用联邦学习使物联网设备或传感器能够相互学习。联想正在与波兰云数据解决方案公司ByteLAKE合作，开展联邦学习和边缘计算环境系统构建。</p>
+<h4 id="对多方安全计算的积极探索">对多方安全计算的积极探索</h4>
+<p>在数据隐私保护的研究应用方面，基于多方安全计算技术，腾讯开展AI创新实践，推出“腾讯云数盾”。数盾以数据安全治理为核心,构建了可用于外部攻击防护、数据交换保护、内部防泄露等全流程的数据安全保护方案,用于帮助企业数据安全建设。数盾通过使用匿名化、差分隐私、安全多方计算架构等方式,在数据使用安全的基础上,平衡隐私保护与数据挖掘价值，符合对于数据使用和共享环境中的合规需求。</p>
+<p>阿里巴巴于四年前开始研究共享学习技术，研发蚂蚁金服共享学习平台，主要思想和联邦学习相同，基于数据安全和隐私保护，在多个参与方之间通过共享加密数据或加密机制下的参数交换与优化，进行机器学习，作为虚拟的共享模型的产品平台。蚂蚁金服共享学习平台本着数据共享建模方案不泄露用户隐私且符合数据安全保护的原则实现了数据的多方协同和授权共享，得到更准确高效的模型和决策，进一步释放数据价值。</p>
+<h3 id="联邦学习的未来">联邦学习的未来</h3>
+<p>对想要进行联合机器学习的各参与方，联邦学习具有保护隐私和多方本地数据安全的极大优势。避免集中式存储数据，安全合规地从多源不互通的数据中创造新的价值，充分利用各方数据资源，优化机器学习训练结果，学习参与方可以在联合形成协同合作的联邦大数据环境，形成联邦学习生态。联邦学习生态可以视为一个多种数据来源合作产生的，基于联邦学习原理协同规范的，用于联邦学习过程的无共享多方数据集群环境。用户、方案提供商、服务商、运营商以及生态链上游厂商融入到一个大环境，提供优化服务，真正达到联邦学习的资源融合作用。对金融、互联网、通信、零售、交通运输、工业生产等行业提供计算服务支持。我们可以从以下四方面窥探联邦学习的未来。</p>
+<p><strong>丰富的数据资源是联邦学习最大的金矿</strong>。原本分散在各规模企业的数据，通过联邦学习生态达成，可以发挥其自身作用，有了更好的用武之地。例如在精准营销方面，通过机器学习建模，把顾客群体细分，对每个群体，量体裁衣地采取相应对策。利用整合各方有用资源，构造更好的机器学习效果，以此产生利益价值。利用“联邦学习+人工智能”真正的赋能大数据并反哺个人和企业业务，用数据和科学提升业务效益。</p>
+<p>**打破传统企业机构的数据边界，利用联邦学习提升智能化效果。**改变过去商务智能和政府仅仅依靠机构内部数据的局面。协同各企业机构，达成优化合作，降低各机构间的交易摩擦成本和数据风险，提升机器学习的准确性和更新的及时性。在智慧城市、智慧医疗、智慧金融、企业数据联盟等方面提出新的使用方向。</p>
+<p>**更了解市场，发现用户需求并将联邦学习产业应用落地。**从市场业务挖掘数据使用场景，找出联邦学习在市场环境中的使用场景及应用范围，结合目前个人和机构的使用需求，利用联邦学习环境，提供丰富的资源，强化机器学习效果，辅助加速各产业智能化。</p>
+<p>**达成各行业联手，共建全行业的联邦学习生态。**联邦学习的出现已经开始改变大数据在各行各业的应用方式，联邦大数据生态的构建也离不开学界和工业界的共同探索和推动，使用联邦学习技术的各方应当携手，联合制定数据联邦行业规范，促成多方联邦数据协议，达成标准化、协同化、规范化的联邦学习环境。</p>
+<p>在信息流通日益渗透到企业和个人的今天，联邦学习将逐渐成为金融、保险、投资、医疗等众多行业领域实现商业价值和隐私安全保护的最佳途径，其应用将在各行业全面展开，联邦学习的新纪元已经到来。</p>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://www.secrss.com/articles/12695">数据隐私保护新曙光：联邦学习的机遇、挑战与未来</a></p>
+<p><a href="https://aisp-1251170195.cos.ap-hongkong.myqcloud.com/wp-content/uploads/pdf/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%99%BD%E7%9A%AE%E4%B9%A6_v2.0.pdf">联邦学习白皮书_v2.0</a></p>
+<p><a href="https://github.com/tao-shen/Federated-Learning-FAQ">联邦学习FAQ</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/搭建用于无人驾驶强化学习的环境/" class="post-title gt-a-link">
+                    搭建用于无人驾驶学习的TORCS环境
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

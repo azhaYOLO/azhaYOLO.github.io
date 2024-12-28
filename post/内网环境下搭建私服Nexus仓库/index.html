@@ -1,0 +1,433 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>内网环境下搭建私服Nexus仓库 | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    内网环境下搭建私服Nexus仓库
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-02-17 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/zI5ANADkPzz/" class="post-tags">
+                            # Java
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>最近在公司开发时，重新开始捡起五年左右没有用过的JAVA，从零开始学习Spring和Springboot，由于内部环境无法访问外网，很多依赖无法从外网获取，于是开始灰头土脸地开始折腾起Maven、Nexus、IDEA这三个玩意儿地连通。</p>
+<!-- more -->
+<h2 id="maven是什么">Maven是什么</h2>
+<p>Maven就是是专门为Java项目打造的管理和构建工具，它的主要功能有：</p>
+<ul>
+<li>提供了一套标准化的项目结构；</li>
+<li>提供了一套标准化的构建流程（编译，测试，打包，发布……）；</li>
+<li>提供了一套依赖管理机制。</li>
+</ul>
+<p>其中，在项目中需要引用依赖时，Maven请求构件的流程图如下<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_01.png" alt="Maven请求构件流程图" loading="lazy"><br>
+其中远程仓库和镜像仓库地址皆可为我们的私服地址，目前主流的私服搭建工具为Nexus，例如阿里云的Maven旧版仓库就是搭建在Nexus上的。</p>
+<h2 id="nexus3仓库的搭建">Nexus3仓库的搭建</h2>
+<h3 id="nexus是什么">Nexus是什么</h3>
+<p>Nexus 的全称是 Nexus Repository Manager（Nexus 仓库管理器），是 Sonatype 公司的一个产品。Nexus 是一个强大的仓库管理器，极大地简化了内部仓库的维护和外部仓库的访问。Nexus常被用来搭建 Maven 私服，所以也有人将 Nexus 称为“Maven仓库管理器”。除此之外，Nexus还可创建npm、pypi等的仓库。</p>
+<h3 id="nexus3下载">Nexus3下载</h3>
+<p>进入<a href="https://www.sonatype.com/products/repository-oss-download">Nexus官网下载页面</a>。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_02.png" alt="" loading="lazy"></p>
+<p>填好一些信息后，选择所需要的版本，因为我的开发环境是Windows，所以下面以Windows作为示例。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_03.png" alt="" loading="lazy"></p>
+<h3 id="nexus3的安装与配置">Nexus3的安装与配置</h3>
+<p>官网上下载下来的Nexus3是个zip压缩包，解压到合适的路径下，解压好后包含两个文件夹，分别为nexus-3.xx.xx-xx和sonatype-work，我的版本为nexus-3.47.1-01，进入该文件夹下的etc目录，用文本处理软件打开nexus-default.properties<br>
+修改application-port自定义私服仓库端口号，修改application-host自定义私服仓库IP，默认为localhost和8081，例如，可以设置端口为9999（ps：chrome等浏览器会限制6666等的部分端口，将其视为不安全的端口，如果遇到此类问题可以查查是否是因为端口受到限制而无法打开。）<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_04.png" alt="" loading="lazy"></p>
+<p>保存配置文件后，返回nexus-3.47.1-01目录，进入bin目录，在命令提示符中打开该路径，输入<code>nexus.exe /install</code>安装服务，默认服务名是nexus，安装后的服务可以在开机后自动启动。接着输入<code>nexus.exe /start</code>启动服务，稍等片刻后输入http://localhost:9999/ 即可进入Nexus3仓库。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_05.png" alt="" loading="lazy"></p>
+<p>首次进入Nexus仓库会提示输入用户名和密码，与Nexus2不同，Nexus3默认的用户名为admin，但是密码不再默认为admin123，需要进入sonatype-work文件夹，该文件夹下有个admin.password文件，用文本处理软件打开复制即可，后续会提示输入新密码，是否允许匿名登录等，根据需求进行配置即可。</p>
+<h3 id="nexus仓库分类">Nexus仓库分类</h3>
+<p>Nexus仓库分为以下 3 个类型：<br>
+代理仓库（proxy）：用来代理远程公共仓库，如 Maven 中央仓库、JBoss 远程仓库。<br>
+宿主仓库（hosted）：又称 Nexus 本地仓库，该仓库通常用来部署本地项目所产生的构件。<br>
+仓库组（group）：用来聚合代理仓库和宿主仓库，为这些仓库提供统一的服务地址，以便 Maven 可以更加方便地获得这些仓库中的构件。<br>
+为了更加直观的理解仓库组、代理仓库和宿主仓库的概念，我们通过下图展示它们的用途和区别。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_06.png" alt="Nexus 仓库分类" loading="lazy"></p>
+<p>由上图可知：<br>
+Maven 可以直接从宿主仓库中下载构件。<br>
+Maven 也可以从代理仓库中下载构件，代理仓库会从远程仓库下载并缓存构件。<br>
+Maven 还可以从仓库组中下载构件，仓库组会从其包含的宿主仓库和代理仓库中获取构件。</p>
+<h3 id="创建宿主仓库">创建宿主仓库</h3>
+<p>依次点击页面上的齿轮，Repositories，Create repository，maven2(hosted)来创建一个宿主仓库。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_07.png" alt="" loading="lazy"><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_08.png" alt="" loading="lazy"></p>
+<p>例如，我打算创建一个用来存放中央仓库中没有的第三方jar包仓库，可以给它起名3rd-party，Version policy默认为Release，此处强烈推荐使用Mixed，否则若之后想要上传SNAPSHOT版本的jar包会很麻烦。Deployment policy默认为Disable redepoly，此处推荐使用Allow redeploy。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_09.png" alt="" loading="lazy"></p>
+<p>点击页面最下方的Create repository按钮即可完成仓库的创建。</p>
+<h3 id="配置代理仓库">配置代理仓库</h3>
+<p>和上一步相似，依次点击页面上的齿轮，Repositories，maven-central来进行代理仓库的配置。<br>
+Remote storage可以修改为阿里云maven组仓库的地址<code>https://maven.aliyun.com/repository/public</code>，来提升构件下载的速率，点击页面最下方的Save按钮即可完成代理仓库的配置修改。需要注意的是，Nexus默认存在的代理仓库的版本策略是Release的，如果需要Mixed策略，则需要重新创建一个代理仓库。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_10.png" alt="" loading="lazy"></p>
+<h3 id="批量上传构件">批量上传构件</h3>
+<p>和Nexus2可以直接拖动整个仓库到Nexus文件夹下不同，Nexus3仅提供了手动上传的方法，该方法单次只能上传一个构件，效率十分低下，而且在输入构件信息的过程中，很容易出错。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_11.png" alt="" loading="lazy"></p>
+<p>这里推荐使用批量上传的方法：<br>
+<strong>前提：windows执行shell脚本，务必安装git 客户端工具。（因为需要执行sh文件）</strong></p>
+<ol>
+<li>在Maven仓库根目录下创建 “mavenimport.sh” 脚本<br>
+脚本内容为：</li>
+</ol>
+<pre><code>   #!/bin/bash
+   # copy and run this script to the root of the repository directory containing files
+   # this script attempts to exclude uploading itself explicitly so the script name is important
+   # Get command line params
+   while getopts &quot;:r:u:p:&quot; opt; do
+    case $opt in
+        r) REPO_URL=&quot;$OPTARG&quot;
+        ;;
+        u) USERNAME=&quot;$OPTARG&quot;
+        ;;
+        p) PASSWORD=&quot;$OPTARG&quot;
+        ;;
+    esac
+   done
+
+find . -type f -not -path './mavenimport\.sh*' -not -path '*/\.*' -not -path '*/\^archetype\-catalog\.xml*' -not -path '*/\^maven\-metadata\-local*\.xml' -not -path '*/\^maven\-metadata\-deployment*\.xml' | sed &quot;s|^\./||&quot; | xargs -I '{}' curl -u &quot;$USERNAME:$PASSWORD&quot; -X PUT -v -T {} ${REPO_URL}/{} ;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_12.png" alt="" loading="lazy"></figure>
+<ol start="2">
+<li>
+<p>在该目录下点击右键，点击Git Bash Here<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_13.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>打开的窗口中，执行命令</p>
+<pre><code>./mavenimport.sh -u 用户名 -p 密码 -r http://IP:端口/repository/仓库名/
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_14.png" alt="" loading="lazy"></figure>
+</li>
+</ol>
+<p>运行结束后，即可在Nexus仓库中查看上传的构件。</p>
+<h3 id="配置组仓库">配置组仓库</h3>
+<p>我在开发中所采用的组仓库配置策略为，组仓库包含了三方包仓库、代理仓库、发行版仓库、快照版仓库，后续只暴露组仓库的地址即可满足项目从这些仓库中下载构件。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_15.png" alt="" loading="lazy"></p>
+<h2 id="nexus仓库的配置与使用">Nexus仓库的配置与使用</h2>
+<h3 id="修改settingsxml文件">修改settings.xml文件</h3>
+<p>settings.xml是用来设置Maven参数的配置文件，并且settings.xml是maven的全局配置文件，而pom.xml文件是所在项目的局部配置。<br>
+settings.xml中包含类似本地仓储位置、修改远程仓储服务器、认证信息等配置。<br>
+最好直接复制一个配置好的文件进行修改，自己配置容易出错。我在Maven的根目录下，复制了一个settings.xml文件，文件内容如下：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+
+    &lt;!-- 本地仓库地址 --&gt;
+    &lt;!-- &lt;localRepository&gt;C:\Users\Azha\.m2\repository&lt;/localRepository&gt; --&gt;
+
+
+    &lt;!-- 以下配置为上传jar包配置 --&gt;
+    &lt;pluginGroups&gt;
+
+    &lt;/pluginGroups&gt;
+
+    &lt;proxies&gt;
+
+    &lt;/proxies&gt;
+
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;!-- id,对应项目里面pom.xml里面distributionManagement配置的id --&gt;
+            &lt;id&gt;maven-releases&lt;/id&gt;
+            &lt;!-- 登录nexus的用户名 --&gt;
+            &lt;username&gt;admin&lt;/username&gt;
+            &lt;!-- 登录nexus的密码 --&gt;
+            &lt;password&gt;admin123&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;!-- id,对应项目里面pom.xml里面distributionManagement配置的id --&gt;
+            &lt;id&gt;maven-snapshots&lt;/id&gt;
+            &lt;!-- 登录nexus的用户名 --&gt;
+            &lt;username&gt;admin&lt;/username&gt;
+            &lt;!-- 登录nexus的密码 --&gt;
+            &lt;password&gt;admin123&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;!-- 配置拦截器mirror登录的用户名密码。他会拦截所有的请求到mirror指定的地址下载jar包 如果只需要去私服下载jar包则只需配置此项 --&gt;
+        &lt;server&gt;
+            &lt;!-- id，对应mirror中id --&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;username&gt;admin&lt;/username&gt;
+            &lt;password&gt;admin123&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+
+    &lt;!-- 以下配置为下载jar包配置 通用 --&gt;
+
+    &lt;mirrors&gt;
+        &lt;!-- 强制让jar包下载走私服 --&gt;
+        &lt;mirror&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+            &lt;url&gt;http://localhost:9999/repository/maven-public/&lt;/url&gt;
+        &lt;/mirror&gt;
+    &lt;/mirrors&gt;
+
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;!-- 对应activeProfiles-activeProfile的内容 --&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;!-- 仓库地址 --&gt;
+            &lt;repositories&gt;
+                &lt;repository&gt;
+                    &lt;!-- 私服id，覆盖maven-model模块下的父id，让maven不走中央仓库下载，走私服下载 --&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;!-- 名字 --&gt;
+                    &lt;name&gt;Nexus&lt;/name&gt;
+                    &lt;!-- 私服地址，写central后，会去mirror里面找 --&gt;
+                    &lt;url&gt;http://localhost:9999/repository/maven-public/&lt;/url&gt;
+                    &lt;!-- 支持releases版本 --&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;!-- 支持snapshots版本 --&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+            &lt;!-- 插件地址 --&gt;
+            &lt;pluginRepositories&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;name&gt;Nexus Plugin Repository&lt;/name&gt;
+                    &lt;url&gt;http://localhost:9999/repository/maven-public/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+            &lt;/pluginRepositories&gt;
+            &lt;!-- 配置全局的url地址 供上传jar包时动态获取 --&gt;
+            &lt;properties&gt;
+                &lt;ReleaseRepository&gt;http://localhost:9999/repository/maven-releases/&lt;/ReleaseRepository&gt;
+                &lt;SnapshotRepository&gt;http://localhost:9999/repository/maven-snapshots/&lt;/SnapshotRepository&gt;
+            &lt;/properties&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+
+    &lt;!-- 选择使用的profile --&gt;
+    &lt;activeProfiles&gt;
+        &lt;activeProfile&gt;nexus&lt;/activeProfile&gt;
+    &lt;/activeProfiles&gt;
+
+&lt;/settings&gt;
+</code></pre>
+<p>settings.xml参数较多，建议多看看资料，才能有较为深入的了解，否则很容易配置出错导致无法接入Nexus仓库。</p>
+<h3 id="修改pomxml文件">修改pom.xml文件</h3>
+<p>若无需对代码进行打包发布，则无需进行此步骤。如果需要将代码打包上传到Nexus仓库中，则需要配置pom.xml文件，在<project>标签范围内加入如下代码：</p>
+<pre><code>&lt;distributionManagement&gt;
+    &lt;repository&gt;
+        &lt;id&gt;maven-releases&lt;/id&gt;
+        &lt;name&gt;maven-releases&lt;/name&gt;
+        &lt;url&gt;http://localhost:9999/repository/maven-releases/&lt;/url&gt;
+    &lt;/repository&gt;
+
+    &lt;snapshotRepository&gt;
+        &lt;id&gt;maven-snapshots&lt;/id&gt;
+        &lt;name&gt;maven-snapshots&lt;/name&gt;
+        &lt;url&gt;http://localhost:9999/repository/maven-snapshots/&lt;/url&gt;
+    &lt;/snapshotRepository&gt;
+&lt;/distributionManagement&gt;
+</code></pre>
+<p><strong>需要注意的是，仓库的id需要与settings.xml中server的id对应！</strong></p>
+<h3 id="idea配置">IDEA配置</h3>
+<p>打开IDEA的Settings，打开Maven配置，Maven home path选择Maven根目录路径，User settings file选择上个步骤中写好的settings.xml文件，这里<strong>千万要记得勾选Override</strong>才可选择自定义的settings.xml，我将该文件放在了Maven的根目录下，便于后续修改。Local repository是本地仓库的地址，默认为C:\Users\你的用户名.m2\repository下，但会默认读取settings.xml中定义的仓库地址，<strong>勾选了Override后生效</strong>，也可以进一步选择自定义的本地仓库地址。<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E44/E44_16.png" alt="" loading="lazy"></p>
+<p>刷新，Reload All Maven Projects，构件就自动开始下载了！</p>
+<p>如果需要发布自己的代码到仓库中，以此执行Maven的clean-deploy即可，可以在对应release或者snapshot仓库中看到打包好的jar包，后续在生产环境或者测试环境中即可随时拉取使用。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200">Maven基础</a><br>
+<a href="http://c.biancheng.net/nexus/">Nexus（Maven私服搭建）教程</a><br>
+<a href="https://www.jianshu.com/p/2a6a734bd76a">nexus 3.x私服配置（windows版）</a><br>
+<a href="https://blog.csdn.net/lihbps/article/details/104527652">Nexus3.x批量导入本地库(Windows版)</a><br>
+<a href="https://juejin.cn/post/7029225358985527310">Nexus简介及小白使用IDEA打包上传到Nexus3私服详细教程</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/基于Vue的流程图/" class="post-title gt-a-link">
+                    基于Vue的流程图
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

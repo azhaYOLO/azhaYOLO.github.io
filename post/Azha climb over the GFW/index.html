@@ -1,0 +1,383 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Azha climb over the GFW | Azha&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://azha.fun/favicon.ico?v=1735403581600">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://azha.fun/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Azha&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            主页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/friends" class="menu gt-a-link">
+                            友链
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1735403581600" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Azha climb over the GFW
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2018-03-07 ·
+                    </time>
+                    
+                        <a href="https://azha.fun/tag/kYOdlkylfv/" class="post-tags">
+                            # VPN
+                        </a>
+                    
+                        <a href="https://azha.fun/tag/HSNvVkfWVf2/" class="post-tags">
+                            # VPS
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>防火长城</strong>（英语：<strong>Great Firewall (of China)</strong>，常用简称：<strong>GFW</strong>，中文也称<strong>中国国家防火墙</strong>，中国大陆民众俗称<strong>墙</strong>、<strong>防火墙</strong>、<strong>功夫网</strong>等等），是对中华人民共和国政府在其互联网边界审查系统（包括相关行政审查系统）的统称。此系统起步于1998年，其英文名称得自于2002年5月17日Charles R. Smith所写的一篇关于中国网络审查的文章<a href="https://www.newsmax.com/Pre-2008/The-Great-Firewall-China/2002/05/17/id/666750/">《The Great Firewall of China》</a>，取与Great Wall（长城）相谐的效果，简写为Great Firewall，缩写GFW。随着使用的拓广，中文“墙”和英文“GFW”有时也被用作动词，网友所说的“被墙”即指网站内容被防火长城所屏蔽，“翻墙”也被引申为突破网络审查浏览境内外被屏蔽的网站或使用服务（如被GFW屏蔽的网盘Dropbox）的行为。</p>
+<!--more-->
+<h2 id="写在前面">写在前面</h2>
+<p>作为一名IT行业的学生，了解国外的先进技术十分有必要。2018年2月1日之后，各大主流VPN提供商纷纷倒下，迫于对知识的渴望，自己动手搭建了一个<a href="https://en.wikipedia.org/wiki/VPS">VPS</a>，并成功连接上了<a href="https://en.wikipedia.org/wiki/VPN">VPN</a>。</p>
+<h2 id="福利">福利</h2>
+<p>拿本文采用的VPS提供商<a href="https://www.digitalocean.com/">Digital Ocean</a>来说,每月的租金并不便宜，下面提供了两种福利，请按顺序领取，高校学生共能获得**$60**的奖励。</p>
+<h3 id="邀请链接">邀请链接</h3>
+<p><a href="http://pages.news.digitalocean.com/dcn/AyKQ30vur1Nt8H30LIWxk-j5xHmafGnoECQwn1ooO76obrnrh6UX29gaHSh3tDAkKlHj6xkqu7XyHFgKmIhokw==/z0le3V6002pIX327EpB0D00">Azha’s Bonus</a> 点击该链接注册账号即可获得**$10**和两个月的免费存储空间，当你在Digital Ocean消费$25美元时，我也能获得$25的奖励。邮件原文:</p>
+<pre><code>They’ll get $10 in credit just for signing up (+2 months free for Spaces, our new object storage service. As soon as they’ve spent $25 with us, you get $25 in credit.
+</code></pre>
+<h3 id="学生福利">学生福利</h3>
+<p>当一个学生真是太爽了！各大企业都不吝对学生提供优惠来培养未来的客户，<strong>Github Education</strong>就提供了<a href="https://education.github.com/pack/offers"><strong>Student Developer Pack</strong></a>，开发包里就含有一张面值**$50**的credit coupon，当然还有各种各样的优惠券，与本文无关不再赘述。如果你是一名高校学生，在Github里绑定一个edu邮箱，通过该认证邮箱领取你的专属<a href="https://education.github.com/pack/offers"><strong>Student Developer Pack</strong></a>吧！</p>
+<h3 id="注意事项">注意事项</h3>
+<p>请先点击<a href="http://azha.fun/2018/03/07/Azha%20climb%20over%20the%20GFW/(http://pages.news.digitalocean.com/dcn/AyKQ30vur1Nt8H30LIWxk-j5xHmafGnoECQwn1ooO76obrnrh6UX29gaHSh3tDAkKlHj6xkqu7XyHFgKmIhokw==/z0le3V6002pIX327EpB0D00)">邀请链接</a>注册账号，再使用<a href="https://www.paypal.com/c2/home">Paypal</a> 充值**$5<strong>来激活你的账户（Paypal与银行卡的绑定类似于支付宝，其中农行借记卡不能绑定Paypal）。激活之后点击个人头像，点击</strong>Settings**，下拉找到<strong>Promo code</strong>，输入你的优惠码，这时候你会发现，使用不了！Digital Ocean网站限制了优惠次数，也就是说不管你通过什么样方式获得优惠，只能优惠一次，所以学生码不管用了。<br>
+这个时候大家可以在网站的Support里提交一个Ticket，也就是给客服发个邮件说明情况，客服一般会帮你手动添加的。鉴于每一封邮件往来时间可能需要一天，所以在发ticket的时候就把你的Github学生优惠码贴上。按下图所示步骤</p>
+<ol>
+<li>
+<p>进入网站点击<strong>Support</strong><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_02.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>拉到网页下方点击<strong>Contact Support</strong><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_03.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>点击如图所示的内容，描述你的问题<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_04.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong>Ticket模板</strong></p>
+</li>
+</ol>
+<pre><code>Hello,
+    I am a student .I got a student coupon on Github, but when I typed this coupon on the website,it was remind that I couldn't use it. Could you help me? Here is my coupon code: &quot;这里填上你的优惠码&quot;.
+</code></pre>
+<ol start="5">
+<li>静候佳音 Happy coding!</li>
+</ol>
+<h2 id="购买vps">购买VPS</h2>
+<ol>
+<li>
+<p>进入网站点击<strong>Craete</strong>，选择<strong>Droplets</strong><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_5.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>选择服务器镜像，这里推荐Ubuntu 14.04 x64<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_06.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>选择配置方案，如果只用来做VPN，最便宜的方案足矣<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_07.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>选择节点区域，这里推荐<strong>San Francisco 2</strong>，速度感人<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_08.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>附加选项，没需要的话都不必勾选，否则可能产生额外费用<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_09.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong>Create</strong>，稍等待一会儿，你的VPS就初始化好了！</p>
+</li>
+</ol>
+<h2 id="配置vps">配置VPS</h2>
+<ol>
+<li>
+<p>使用<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> 连接你的VPS。输入你的IP地址，保持prot值为22不变，点击open即可<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_10.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>登录你的VPS，用户名root，密码会发送到你的邮箱里，第一次登录需要你改密码。有一点Linux使用经历操作起来会顺手一些。依次输入下列指令</p>
+</li>
+</ol>
+<pre><code># 安装pip
+$apt-get install python-pip
+
+# 安装shadowsocks
+$pip install shadowsocks
+</code></pre>
+<ol start="3">
+<li>通过vim创建并修改shadowsocks.json配置文件</li>
+</ol>
+<pre><code>vi /etc/shadowsocks.json
+</code></pre>
+<p>在文件中输入如下指令（可以先了解一下vim的<a href="http://www.runoob.com/linux/linux-vim.html">使用手册</a>），更改相应部分为你的VPS信息</p>
+<pre><code>{
+ &quot;server&quot;:&quot;your_server_ip&quot;,
+ &quot;server_port&quot;:443,
+ &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+ &quot;local_port&quot;:1080,
+ &quot;password&quot;:&quot;your_password&quot;,
+ &quot;timeout&quot;:333,
+ &quot;method&quot;:&quot;aes-256-cfb&quot;,
+ &quot;fast_open&quot;:false
+ }
+</code></pre>
+<ol>
+<li>启动shadowsocks</li>
+</ol>
+<pre><code># 后台启动shadowsocks
+$ssserver -c /etc/shadowsocks.json -d start
+</code></pre>
+<ol start="2">
+<li>Enjoy!</li>
+</ol>
+<h2 id="终端体验">终端体验</h2>
+<h3 id="windows-pc">Windows PC</h3>
+<p>下载<a href="https://github.com/shadowsocks/shadowsocks-windows/releases/download/4.0.8/Shadowsocks-4.0.8.zip">shadowsocks on Windows</a>，绿色版解压即可使用<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_11.png" alt="" loading="lazy"></p>
+<p>填入信息，系统托盘里右键小飞机，<strong>启用系统代理</strong><br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_12.png" alt="" loading="lazy"></p>
+<h3 id="ios-iphone">iOS iPhone</h3>
+<p>2018年2月1日之后，app store就不见了各种shadowsocks工具的身影，苦苦寻找之后，终于找到了一个超级好用的shadowsocks工具<a href="https://itunes.apple.com/cn/app/ssrconnectpro/id1272045249?mt=8">SsrConnectPro</a>。配置相关信息，Connect！<br>
+<img src="https://blog-1254046656.cos.ap-beijing.myqcloud.com/E15/E15_13.jpg" alt="" loading="lazy"></p>
+<h3 id="macos-macbook">MacOS MacBook</h3>
+<p>下载<a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases/download/v1.7.1/ShadowsocksX-NG.1.7.1.zip">shadowsocks on MacOS</a>，按照<a href="https://lvii.gitbooks.io/outman/content/ss.mac.html">说明</a>操作即可。</p>
+<h3 id="android-phone">Android Phone</h3>
+<p>下载并安装<a href="https://github.com/shadowsocks/shadowsocks-android/releases/download/v4.5.1/shadowsocks--universal-4.5.1.apk"><strong>影梭</strong>apk</a>，与上述配置方法相似，不再赘述。</p>
+<h3 id="google">Google</h3>
+<p>Google是一个了不起的企业，现在你可以体验<a href="https://www.google.com/">Google Search</a>了！</p>
+<h2 id="基于tcp拥塞控制的加速">基于TCP拥塞控制的加速</h2>
+<p>渐渐地有了速度上的需求，这时候需要对VPS进行加速，我建立了两个同样配置的节点，采取两种主流的不一样的加速方法——BBR加速和serverspeeder（锐速）加速，但其实并无网上传言那么神奇，毕竟配置还是主要制约因素。</p>
+<h3 id="bbr加速">BBR加速</h3>
+<p><a href="https://en.wikipedia.org/wiki/TCP_congestion_control#TCP_BBR">BBR</a>是Google开发的TCP拥塞控制算法，据说能有效提升VPN的用户体验。<br>
+个人开启并体验了BBR加速，但并没有明显的提速感觉，反而觉得速度下降了些，不知道是坊间传言太神乎了，还是我的操作存在差错，欢迎大神指教。操作如下：</p>
+<pre><code># 安装 可能需要重启VPS
+$wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh
+
+# 验证一下是否成功安装最新内核并开启 TCP BBR
+$uname -r
+
+# 查看内核版本
+$sysctl net.ipv4.tcp_available_congestion_control
+$sysctl net.ipv4.tcp_congestion_control
+$sysctl net.core.default_qdisc
+
+# 检查是否开启BBR
+$lsmod | grep bbr
+</code></pre>
+<p>一个月的体验之后，对BBR还较为满意。</p>
+<h3 id="serverspeeder锐速加速">serverspeeder（锐速）加速</h3>
+<p>据说锐速会比BBR更加暴力地加速，并且很多前辈们都贴出了自己的经验，按照网上总结出的教程如下：</p>
+<pre><code># 下载wget
+$yum -y install wget
+$wget  -N  --no-check-certificate 
+
+# 安装脚本
+$https://raw.githubusercontent.com/wn789/serverspeeder/master/serverspeeder-all.sh
+
+# 执行脚本
+$bash  serverspeeder-all.sh
+</code></pre>
+<p>该过程可能需要更换内核，详细请参考<a href="https://liyuans.com/archives/digitalocean-ubuntu-kernal-change.html">DigitalOcean Ubuntu 更换为锐速可用的内核</a><br>
+至于锐速的效果嘛，emmmmmm…目前我已经删除该节点：）</p>
+<h2 id="vps开机自启动shadowsocks">VPS开机自启动shadowsocks</h2>
+<p>每一次<code>reboot</code>之后都得重新启动服务，这显然不符合程序员懒的特性，于是我们可以通过编辑几个文件，做到VPS开机自启动ss服务。</p>
+<pre><code># 编辑/etc/rc.local
+$vim /etc/rc.local
+</code></pre>
+<p>在文件中添加<code>ssserver -c /etc/shadowsocks.json -d start</code>即可。</p>
+<pre><code># 修改/etc/init.d/rc.local文件
+$vi /etc/init.d/rc.local
+</code></pre>
+<p>将原本的<code>PATH=/sbin:/usr/sbin:/bin:/usr/bin</code>修改为<code>PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin</code>即可。</p>
+<p>系统重启将成功执行<code>ssserver -c /etc/shadowsocks.json -d start</code>命令。Enjoy！</p>
+<h2 id="法律法规">法律法规</h2>
+<p><strong>VPN</strong>仅用于 <strong>科学研究</strong> 和 <strong>学术交流</strong> 用途，请务必遵守相关法规，转发敏感内容需要慎重。</p>
+<p>任何个人和组织使用网络应当遵守宪法法律，遵守公共秩序，尊重社会公德，不得危害网络安全， 不得利用网络从事危害国家安全、荣誉和利益，煽动颠覆国家政权、推翻社会主义制度，煽动分裂 国家、破坏国家统一，宣扬恐怖主义、极端主义，宣扬民族仇恨、民族歧视，传播暴力、淫秽色情 信息，编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人名誉、隐私、知识产权和其他 合法权益等活动。</p>
+<p>附：《<a href="http://www.miit.gov.cn/n1146295/n1146557/n1146614/c5345009/content.html">中华人民共和国网络安全法</a>》</p>
+<h2 id="再说两句">再说两句</h2>
+<p>大家连接上自己的VPN之后再访问我的博客就能看到我的博客评论模块啦！欢迎大家友善交流(╹ڡ╹ )</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="http://blog.csdn.net/u013383596/article/details/78796977">Digiatl Ocean学生优惠码失效解决方案</a><br>
+<a href="http://lewiszlw.me/2017/01/04/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84VPN%E6%9C%8D%E5%8A%A1%E5%99%A8/">搭建自己的VPN服务器</a><br>
+<a href="https://www.gitbook.com/book/lvii/outman/details">科学上网漫游指南</a><br>
+<a href="https://github.com/shadowsocks">shadowsocks</a><br>
+<a href="https://teddysun.com/489.html">一键安装最新内核并开启 BBR 脚本</a><br>
+<a href="https://liyuans.com/archives/digitalocean-ubuntu-kernal-change.html">DigitalOcean Ubuntu 更换为锐速可用的内核</a><br>
+<a href="https://www.wn789.com/4678.html">锐速ServerSpeeder无限带宽无限制版一键安装包</a></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://azha.fun/post/Movies of February, 2018/" class="post-title gt-a-link">
+                    Movies of February, 2018
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'azha',
+  apikey: 'fxEozLWLuaQdC0CUzlc2u570BcyaVFIZYx6BNy6xo24JqNKfexGF0hw5ztJn6qB3',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">平平无奇</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/azhaYOLO" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+                <a href="https://weibo.com/azha3" target="_blank">
+                    <i class="fab fa-weibo gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+        <a href="http://azha.fun/atom.xml" target="_blank">
+                    <i class="fas fa-rss gt-c-content-color-first"></i>
+        </a>
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+       ©️ Azha YOLO
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
